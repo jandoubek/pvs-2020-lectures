@@ -10,8 +10,11 @@
 
 ### Ajkub Gehrtenab
  * Student
- 
+
 ### Martin Sach
  * Student
- 
- ### Poznamky
+
+### Jan Hecko
+ * Student
+
+### Poznamky
