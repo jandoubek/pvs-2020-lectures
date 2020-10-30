@@ -4,3 +4,6 @@
 
 ### Jan Doubek
  * Lecturer
+
+### Dominik Sepak
+ * Student
