@@ -7,3 +7,6 @@
 
 ### Dominik Sepak
  * Student
+
+### Ajkub Gehrtenab
+ * Student
