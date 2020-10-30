@@ -7,9 +7,7 @@
 
 ### Dominik Sepak
  * Student
-<<<<<<< HEAD
  * Student
-=======
 
 ### Ajkub Gehrtenab
  * Student
@@ -21,4 +19,3 @@
  * Student
 
 ### Poznamky
->>>>>>> a0b1e7c3299aeaf4eb387fa0e0e5ac1d618b0ae3
