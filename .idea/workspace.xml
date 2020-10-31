@@ -1,11 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df11d6b6-33e0-474c-a305-da8fa638788e" name="Default Changelist" comment="" />
+    <list default="true" id="df11d6b6-33e0-474c-a305-da8fa638788e" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/CenterBox.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Logo.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/NoResults.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ResultsBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ResultsList.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/ResultsPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SearchBar.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SearchPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/SubjectDialog.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/public/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logo192.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/logo512.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/index.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/logo.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/reportWebVitals.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
@@ -26,6 +57,30 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
+  <component name="RunManager">
+    <configuration default="true" type="js.build_tools.npm">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="star" />
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <configuration name="start" type="js.build_tools.npm" temporary="true" nameIsGenerated="true">
+      <package-json value="$PROJECT_DIR$/package.json" />
+      <command value="run" />
+      <scripts>
+        <script value="start" />
+      </scripts>
+      <node-interpreter value="project" />
+      <envs />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="npm.start" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -34,17 +89,66 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1604093798454</updated>
-      <workItem from="1604093799525" duration="759000" />
+      <workItem from="1604093799525" duration="4368000" />
+      <workItem from="1604138589863" duration="27919000" />
     </task>
+    <task id="LOCAL-00001" summary="Init app.">
+      <created>1604094665937</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1604094665937</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Init app." />
+    <option name="LAST_COMMIT_MESSAGE" value="Init app." />
+  </component>
   <component name="WindowStateProjectService">
-    <state x="623" y="228" key="search.everywhere.popup" timestamp="1604093976814">
+    <state x="418" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604138629656">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="623" y="228" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604093976814" />
+    <state x="418" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604138629656" />
+    <state x="558" y="91" width="794" height="851" key="CommitChangelistDialog2" timestamp="1604094665757">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="558" y="91" width="794" height="851" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604094665757" />
+    <state x="743" y="277" width="424" height="479" key="FileChooserDialogImpl" timestamp="1604138616899">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="743" y="277" width="424" height="479" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604138616899" />
+    <state width="1899" height="276" key="GridCell.Tab.0.bottom" timestamp="1604154470364">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="276" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604154470364" />
+    <state width="1899" height="276" key="GridCell.Tab.0.center" timestamp="1604154470364">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="276" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604154470364" />
+    <state width="1899" height="276" key="GridCell.Tab.0.left" timestamp="1604154470364">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="276" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604154470364" />
+    <state width="1899" height="276" key="GridCell.Tab.0.right" timestamp="1604154470364">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1899" height="276" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604154470364" />
+    <state x="768" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2" timestamp="1604165121234">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="768" y="436" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604165121234" />
+    <state x="609" y="240" width="700" height="530" key="recent.locations.popup" timestamp="1604164947488">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="609" y="240" width="700" height="530" key="recent.locations.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604164947488" />
+    <state x="623" y="228" width="672" height="678" key="search.everywhere.popup" timestamp="1604097691394">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="228" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604097691394" />
   </component>
 </project>
