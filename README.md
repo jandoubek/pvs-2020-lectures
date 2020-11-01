@@ -18,4 +18,7 @@
 ### Jan Hecko
  * Student
 
+### Hynek Perina
+ * Student
+
 ### Poznamky
