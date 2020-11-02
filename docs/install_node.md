@@ -27,6 +27,7 @@ command -v nvm
 ```
 
 Výstup by měl vypada nějak takto:
+
 ![nvm success](nvm_success.png)
 
 Pro help k nástroji nvm zavolejte `nvm` bez parametrů.
@@ -36,6 +37,7 @@ Pro instalaci node zavolejte:
 nvm install --lts
 ```
 Nakonec se můžete ujistit, že skutečně používáte správnou verzi:
+
 ![nvm install](nvm_install.png)
 
 ## Windows

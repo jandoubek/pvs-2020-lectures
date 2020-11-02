@@ -1,14 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="df11d6b6-33e0-474c-a305-da8fa638788e" name="Default Changelist" comment="Added docs.">
-      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/github_project.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/install_node.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/nvm_install.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/nvm_success.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/webstorm.md" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/docs/webstorm_node.png" afterDir="false" />
+    <list default="true" id="df11d6b6-33e0-474c-a305-da8fa638788e" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/install_node.md" beforeDir="false" afterPath="$PROJECT_DIR$/docs/install_node.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,7 +84,7 @@
       <updated>1604093798454</updated>
       <workItem from="1604093799525" duration="4368000" />
       <workItem from="1604138589863" duration="28774000" />
-      <workItem from="1604325002407" duration="654000" />
+      <workItem from="1604325002407" duration="788000" />
     </task>
     <task id="LOCAL-00001" summary="Init app.">
       <created>1604094665937</created>
@@ -112,7 +107,14 @@
       <option name="project" value="LOCAL" />
       <updated>1604321193944</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Added docs.">
+      <created>1604325675947</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1604325675947</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -122,7 +124,8 @@
     <MESSAGE value="Init app." />
     <MESSAGE value="Minimal working example." />
     <MESSAGE value="Ignoring firebase." />
-    <option name="LAST_COMMIT_MESSAGE" value="Ignoring firebase." />
+    <MESSAGE value="Added docs." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added docs." />
   </component>
   <component name="WindowStateProjectService">
     <state x="418" y="177" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1604138629656">
@@ -133,10 +136,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="690" y="324" width="530" height="385" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604321266703" />
-    <state x="558" y="91" width="794" height="851" key="CommitChangelistDialog2" timestamp="1604325645571">
+    <state x="558" y="91" width="794" height="851" key="CommitChangelistDialog2" timestamp="1604325675810">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="558" y="91" width="794" height="851" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604325645571" />
+    <state x="558" y="91" width="794" height="851" key="CommitChangelistDialog2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604325675810" />
     <state x="743" y="277" width="424" height="479" key="FileChooserDialogImpl" timestamp="1604325458134">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -209,10 +212,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="464" y="154" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604324987235" />
-    <state x="555" y="255" width="800" height="523" key="Vcs.Push.Dialog.v2" timestamp="1604321200487">
+    <state x="555" y="255" width="800" height="523" key="Vcs.Push.Dialog.v2" timestamp="1604325683640">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="555" y="255" width="800" height="523" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604321200487" />
+    <state x="555" y="255" width="800" height="523" key="Vcs.Push.Dialog.v2/0.0.1920.1040/1920.0.1920.1080@0.0.1920.1040" timestamp="1604325683640" />
     <state x="574" y="200" width="762" height="632" key="com.intellij.openapi.editor.actions.MultiplePasteAction$ClipboardContentChooser" timestamp="1604322866222">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
