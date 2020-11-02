@@ -3,7 +3,7 @@
 ## Members
 
 ### Jan Doubek
- * Lecturer
+ * Prednasejici
 
 ### Dominik Sepak
  * Student
