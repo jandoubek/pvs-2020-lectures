@@ -31,4 +31,4 @@ S [tutoriálem](https://reactjs.org/tutorial/tutorial.html) na officiálním web
 Statefull componenty jsou zde řešeny pomocí Class components. Zde bych se přikláněl
 spíše k používání [hooků](https://reactjs.org/docs/hooks-intro.html). Snad by neměl být
 problém pochopit věci pomocí classes a napsat je pomocí hooků - koncepčně je to stejné,
-jen kód je jiný. 
+jen kód je jiný.
