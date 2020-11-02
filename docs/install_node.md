@@ -44,3 +44,18 @@ Nakonec se můžete ujistit, že skutečně používáte správnou verzi:
 Pro větší flexibilitu bych použil [nvm-windows](https://github.com/coreybutler/nvm-windows). Node version manager pro windows.
 Nainstalujete ho pomocí instalačky [zde](https://github.com/coreybutler/nvm-windows/releases/download/1.1.7/nvm-setup.zip).
 
+**Pozor následující je nutné udělat v PowerShell nebo cmd jako administrátor.**
+Otevřete admin command line (samozřeujmě až po instalaci) a zavolejte `nvm` bez parametrů. Měli bste vidět help message
+
+![win nvm](win_nvm.png)
+
+Následně zavolejte commandý pro instalci a aktivaci momentální LTS verze.
+```shell script
+nvm install 14.15.0
+nvm use 14.15.0
+```
+
+Nakonec můžete ověřit, že je vše nainstalováno vpořádku:
+
+![nvm win success](win_nvm_success.png)
+
