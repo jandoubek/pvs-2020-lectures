@@ -45,11 +45,9 @@ Pro větší flexibilitu bych použil [nvm-windows](https://github.com/coreybutl
 Nainstalujete ho pomocí instalačky [zde](https://github.com/coreybutler/nvm-windows/releases/download/1.1.7/nvm-setup.zip).
 
 **Pozor následující je nutné udělat v PowerShell nebo cmd jako administrátor.**
-Otevřete admin command line (samozřeujmě až po instalaci) a zavolejte `nvm` bez parametrů. Měli bste vidět help message
+Otevřete admin command line (samozřeujmě až po instalaci) a zavolejte `nvm` bez parametrů. Měli bste vidět help message a ne error.
 
-![win nvm](win_nvm.png)
-
-Následně zavolejte commandý pro instalci a aktivaci momentální LTS verze.
+Následně zavolejte commandy pro instalci a aktivaci momentální LTS verze.
 ```shell script
 nvm install 14.15.0
 nvm use 14.15.0
