@@ -23,3 +23,12 @@ Pro inicializaci objektu z githubu doporučuji nástroj `VCS > Get From Version 
 Zde zadáte odkaz na projekt a vše se samo inicializuje:
 
 ![github project](github_project.png)
+
+### Přepínání branches
+
+V pravo dole je možnost přepínat branche. Default je main - na tuto kliknete a měl by se zobrazit
+seznam local a remote branches. Zde je možné kliknout na branch (např. origin/react-example)
+a zvolit chceckout.
+
+Pro vyhnutí se komplikacím, nejjednudušší je mít včechny změny v current branchi comitnuté,
+před checkoutem.
