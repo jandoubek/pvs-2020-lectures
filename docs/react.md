@@ -14,7 +14,7 @@ npm start
 Tento command by default spustí server na [localhost:3000](http://localhost:3000/). Na tomto
 odkazu tedy existuje naše stránka.
 
-## Prvná krůček
+## První krůček
 
 Jako první krůček doporučuji otevřít file `src/Logo.js` a změnit text:
 ```javascript
