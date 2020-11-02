@@ -3,7 +3,7 @@
 ## Members
 
 ### Jan Doubek
- * Lecturer
+ * Prednasejici
 
 ### Dominik Sepak
  * Student
@@ -16,6 +16,9 @@
  * Student
 
 ### Jan Hecko
+ * Student
+
+### Hynek Perina
  * Student
 
 ### Poznamky
