@@ -1,6 +1,10 @@
-# Používání Webstorm
 
-Nainstalovat Webstorm by neměl být problém. Je třeba založit si et a přidat isic, pro studentskou verzi.
+## Instalace
+Nainstalovat Webstorm by neměl být problém. Je třeba založit si účet a přidat isic, pro studentskou verzi. Pak se stačá přihlásit při vyzvání:
+
+![webstorm license](webstorm_license.png)
+
+## Používání Webstorm
 Před používáním se **ujistěte**, že máte nainstalovaný node a npm.
 Pokud ne obraťte se na návod [zde](install_node.md).
 
@@ -10,10 +14,10 @@ Hned po spuštění Webstorm zkontrolujte, že Webstorm správně nalezl node a 
 
 ![webstorm_node](webstorm_node.png).
 
-## Existujcí projekt
+### Existujcí projekt
 Existující projekt (tj. dir kam jste naklonovali projekt) otevřete snadno ve `File > Open...`.
 
-## Projekt z github
+### Projekt z github
 Pro inicializaci objektu z githubu doporučuji nástroj `VCS > Get From Version Control...`.
 Zde zadáte odkaz na projekt a vše se samo inicializuje:
 
