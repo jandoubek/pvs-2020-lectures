@@ -1,7 +1,7 @@
 import React from 'react';
 import CenterBox from "./CenterBox";
 import Logo from "./Logo";
-import SearchBar from "./SearchBar";
+import SearchBar from "./QueryForm";
 
 const SearchPage = () => {
     return (

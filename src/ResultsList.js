@@ -37,6 +37,7 @@ const ResultsList = ({subjects}) => {
             {subjects.map(subject =>
                 <ListItem key={subject.acronym}>
                     <ListItemText
+                        component="div"
                         primary={<SubjectDialog subject={subject}/>}
                         secondary={
                             <React.Fragment>
@@ -49,7 +50,9 @@ const ResultsList = ({subjects}) => {
                                     {subject.acronym}
                                 </Typography>
                                 {" — " + subject.department}
+                                <br />
                                 <Typography
+                                    component="span"
                                     variant="body2"
                                 >
                                     {"Rozvrhováno: " + formatDay(subject.day)}

@@ -1,7 +1,7 @@
 import React from 'react';
 import Paper from "@material-ui/core/Paper";
 import {makeStyles} from "@material-ui/core/styles";
-import SearchBar from "./SearchBar";
+import SearchBar from "./QueryForm";
 import Logo from "./Logo";
 
 const useStyles = makeStyles((theme) => ({
