@@ -20,7 +20,7 @@ def wtf_script(study_plans):
     CURRENT_SEMESTER = "B202"
 
     STUDY_PLAN_FILES = glob("plan*.xml")
-    print("Celkem studijnich planu v BK: " + str(len(STUDY_PLAN_FILES)))
+    # print("Celkem studijnich planu v BK: " + str(len(STUDY_PLAN_FILES)))
 
     def maybe_text(node, xpath):
         nodes = node.xpath(xpath + "/text()")
@@ -86,7 +86,7 @@ def wtf_script(study_plans):
 
         BK_COURSES2[k] = c
 
-    f = open("data.js", "w")
+    f = open("data.js", "w", encoding="utf-8")
     f.write("export const OBORY=" + tojson(OBORY) + "\n\n")
     f.write("export const COURSES=" + tojson(BK_COURSES2) + "\n")
     f.close()
