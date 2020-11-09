@@ -51,7 +51,7 @@ const SearchBar = ({value, onChange}) => {
 SearchBar.propTypes = {
     /** value displayed in the search bar */
     value: PropTypes.string.isRequired,
-    /** function taking string value as a param triggered when a user changes the input*/
+    /** function taking string value as a param triggered when a user changes the input */
     onChange: PropTypes.func.isRequired
 };
 
