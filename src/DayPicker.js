@@ -2,9 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Chip from "@material-ui/core/Chip";
 import {daysInWeek} from "./constants";
+import {makeStyles} from "@material-ui/core/styles";
+import {Box} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        width: "420px",
+        display: "flex",
+        justifyContent: "space-between"
+    },
+    chip: {
+        width: "80px"
+    }
+}));
 
 /** Component for choosing a day by clicking on it */
 const DayPicker = ({onChange, value}) => {
+    const classes = useStyles();
     const handleDayChange = (day) => (e) => {
         e.preventDefault();
         if (value.includes(day)) {
@@ -15,9 +29,10 @@ const DayPicker = ({onChange, value}) => {
     }
 
     return (
-        <div>
+        <Box className={classes.root}>
             {daysInWeek.map((day, index) =>
                 <Chip
+                    className={classes.chip}
                     key={index}
                     label={day}
                     onClick={handleDayChange(index)}
@@ -25,7 +40,7 @@ const DayPicker = ({onChange, value}) => {
                     color={value.includes(index) ? "primary" : 'default'}
                 />
             )}
-        </div>
+        </Box>
     );
 };
 

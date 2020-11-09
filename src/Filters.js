@@ -22,6 +22,9 @@ const useStyles = makeStyles((theme) => ({
     },
     filtersIcon: {
         marginRight: "10px"
+    },
+    details: {
+        flexDirection: "column"
     }
 }));
 
@@ -40,7 +43,7 @@ const Filters = ({info, children}) => {
                 <FilterListIcon className={classes.filtersIcon}/>
                 <Typography>{info}</Typography>
             </AccordionSummary>
-            <AccordionDetails>
+            <AccordionDetails className={classes.details}>
                 {children}
             </AccordionDetails>
         </Accordion>

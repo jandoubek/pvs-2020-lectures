@@ -4,29 +4,7 @@ import {Box} from "@material-ui/core";
 import ResultsList from "./ResultsList";
 import {useLocation} from "react-router-dom";
 import NoResults from "./NoResults";
-
-const useSubjects = () => {
-    return [
-        {
-            name: "Softwarový seminář 1",
-            acronym: "SOS1",
-            department: "Katedra softwarového inženýrství v ekonomii",
-            day: 0
-        },
-        {
-            name: "Pravděpodobnost a aplikovaná statistika",
-            acronym: "AST",
-            department: "Katedra matematiky",
-            day: 4
-        },
-        {
-            name: "Počítačová fyzika 1",
-            acronym: "PF1",
-            department: "Katedra fyzikální elektroniky",
-            day: 0
-        }
-    ];
-};
+import {useSubjects} from "./hooks";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);

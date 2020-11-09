@@ -6,6 +6,7 @@ import DayPicker from "./DayPicker";
 import {useQuery} from "./hooks";
 import Filters from "./Filters";
 import {daysInWeek} from "./constants";
+import CreditsSlider from "./CreditsSlider";
 
 const daysToInfo = (days) => {
     if (days.length === 5) return "kterýkoliv den"
@@ -43,6 +44,7 @@ const QueryForm = ({history}) => {
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
+                <CreditsSlider />
             </Filters>
         </Box>
     );
