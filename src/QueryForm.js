@@ -26,6 +26,10 @@ const QueryForm = ({history}) => {
     const [query, setQuery] = useState(queryRoute.get("includes") ? queryRoute.get("includes") : "");
     const [days, setDays] = useState(parseDays(queryRoute.get("days")));
 
+    //maximum value of the credits-slider element
+    const maxcredits = 40;
+    const [credits, setCredits] = useState([1, maxcredits]);
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let params = '';
@@ -44,7 +48,7 @@ const QueryForm = ({history}) => {
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
-                <CreditsSlider />
+                <CreditsSlider setValue={setCredits} value={credits} maxvalue={maxcredits}/>
             </Filters>
         </Box>
     );
