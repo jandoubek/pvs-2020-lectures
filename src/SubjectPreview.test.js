@@ -8,7 +8,20 @@ import SubjectPreview from "./SubjectPreview";
  */
 
 test('SubjectPreview renders code', () => {
-  render(<SubjectPreview subject={{code: "PVS"}} />);
-  const linkElement = screen.getByText(/PVS/i);
+  const testSubject = {
+    length: "2",
+    day: 0,
+    lecturer: "Doubek",
+    code: "PVS",
+  }
+  render(<SubjectPreview subject={testSubject} />);
+
+  let linkElement = screen.getByText(/PVS/i);
+  expect(linkElement).toBeVisible();
+
+  linkElement = screen.getByText(/Doubek/i);
+  expect(linkElement).toBeVisible();
+
+  linkElement = screen.getByText(/pondělí/i);
   expect(linkElement).toBeVisible();
 });
