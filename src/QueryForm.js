@@ -7,6 +7,8 @@ import {useQuery} from "./hooks";
 import Filters from "./Filters";
 import {daysInWeek} from "./constants";
 import CreditsSlider from "./CreditsSlider";
+import {maxcredits, parseCredits} from "./utility.js"
+
 
 const daysToInfo = (days) => {
     if (days.length === 5) return "kterýkoliv den"
@@ -21,14 +23,15 @@ const parseDays = (daysString) => {
     return [...daysString].map(letter => parseInt(letter));
 }
 
+
+
 const QueryForm = ({history}) => {
     let queryRoute = useQuery();
     const [query, setQuery] = useState(queryRoute.get("includes") ? queryRoute.get("includes") : "");
     const [days, setDays] = useState(parseDays(queryRoute.get("days")));
 
-    //maximum value of the credits-slider element
-    const maxcredits = 40;
-    const [credits, setCredits] = useState([1, maxcredits]);
+
+    const [credits, setCredits] = useState(parseCredits(queryRoute.get("credits")));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -40,6 +43,7 @@ const QueryForm = ({history}) => {
             params += '&days=' + days.reduce((accumulator, index) => accumulator + String(index), "");
         }
         if (params.charAt(0) === '&') params = params.substr(1);
+        params += '&credits=' + credits[0] + '-' +  credits[1];
         return history.push('/search?' + params);
     };
 
