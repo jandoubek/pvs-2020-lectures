@@ -7,11 +7,11 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles((theme) => ({}));
 
 /** Assigned to Dominik */
-const CreditsSlider = ({setValue, value, maxvalue}) => {
+const CreditsSlider = ({onChange, value, maxvalue}) => {
     const classes = useStyles();
 
     const handleChange = (event, newValue) => {
-        setValue(newValue);
+        onChange(newValue);
     };
 
     return (
@@ -34,7 +34,7 @@ const CreditsSlider = ({setValue, value, maxvalue}) => {
 };
 
 CreditsSlider.propTypes = {
-    setValue: PropTypes.func.isRequired,
+    onChange: PropTypes.func.isRequired,
     value: PropTypes.arrayOf(PropTypes.number),
     maxValue: PropTypes.number
 };

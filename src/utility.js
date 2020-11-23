@@ -1,7 +1,4 @@
-
-//maximum value of credits appearing throughout the code
-//TODO: automatically determine the maxcredits value from data
-const maxcredits = 40;
+import {maxcredits} from "./constants";
 
 const parseCredits = (creditsString) => {
     if (!creditsString) return [1, maxcredits];
@@ -10,4 +7,4 @@ const parseCredits = (creditsString) => {
     return [match[1], match[2]].map(letter => parseInt(letter));
 }
 
-export {maxcredits, parseCredits}
+export {parseCredits}

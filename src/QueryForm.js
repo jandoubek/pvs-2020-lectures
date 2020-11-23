@@ -5,9 +5,9 @@ import SearchBar from "./SearchBar";
 import DayPicker from "./DayPicker";
 import {useQuery} from "./hooks";
 import Filters from "./Filters";
-import {daysInWeek} from "./constants";
+import {daysInWeek, maxcredits} from "./constants";
 import CreditsSlider from "./CreditsSlider";
-import {maxcredits, parseCredits} from "./utility.js"
+import {parseCredits} from "./utility.js"
 
 
 const daysToInfo = (days) => {
@@ -52,7 +52,7 @@ const QueryForm = ({history}) => {
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
-                <CreditsSlider setValue={setCredits} value={credits} maxvalue={maxcredits}/>
+                <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
             </Filters>
         </Box>
     );
