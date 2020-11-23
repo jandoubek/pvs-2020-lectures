@@ -5,8 +5,10 @@ import SearchBar from "./SearchBar";
 import DayPicker from "./DayPicker";
 import {useQuery} from "./hooks";
 import Filters from "./Filters";
-import {daysInWeek} from "./constants";
+import {daysInWeek, maxcredits} from "./constants";
 import CreditsSlider from "./CreditsSlider";
+import {parseCredits} from "./utility.js"
+
 
 const daysToInfo = (days) => {
     if (days.length === 5) return "kterýkoliv den"
@@ -21,10 +23,15 @@ const parseDays = (daysString) => {
     return [...daysString].map(letter => parseInt(letter));
 }
 
+
+
 const QueryForm = ({history}) => {
     let queryRoute = useQuery();
     const [query, setQuery] = useState(queryRoute.get("includes") ? queryRoute.get("includes") : "");
     const [days, setDays] = useState(parseDays(queryRoute.get("days")));
+
+
+    const [credits, setCredits] = useState(parseCredits(queryRoute.get("credits")));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -36,6 +43,7 @@ const QueryForm = ({history}) => {
             params += '&days=' + days.reduce((accumulator, index) => accumulator + String(index), "");
         }
         if (params.charAt(0) === '&') params = params.substr(1);
+        params += '&credits=' + credits[0] + '-' +  credits[1];
         return history.push('/search?' + params);
     };
 
@@ -44,7 +52,7 @@ const QueryForm = ({history}) => {
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
-                <CreditsSlider />
+                <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
             </Filters>
         </Box>
     );

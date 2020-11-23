@@ -5,6 +5,7 @@ import ResultsList from "./ResultsList";
 import {useLocation} from "react-router-dom";
 import NoResults from "./NoResults";
 import {useSubjects} from "./hooks";
+import {parseCredits} from "./utility.js"
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -25,9 +26,11 @@ const ResultsPage = () => {
     let queryRoute = useQuery();
     const includes = queryRoute.get("includes");
     const days = parseDays(queryRoute.get("days"));
+    const credits = parseCredits(queryRoute.get("credits"));
     let subjects = useSubjects();
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
     subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
+    subjects = subjects.filter(subject => (subject.credits >= credits[0] && subject.credits <= credits[1]));
     return (
         <React.Fragment>
             <ResultsBar />
