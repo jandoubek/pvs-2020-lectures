@@ -1,5 +1,9 @@
 # PVS 2020 Předměty
 
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=jandoubek_pvs-2020-lectures&metric=bugs)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jandoubek_pvs-2020-lectures&metric=security_rating)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)
+
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)
+
 Aplikace pro vyhledávání předmětů na FJFI ĆVUT.
 
 ## Přáprava prostředí
