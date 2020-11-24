@@ -4,9 +4,9 @@
 
 [![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)
 
-Aplikace pro vyhledávání předmětů na FJFI ĆVUT.
+Aplikace pro vyhledávání předmětů na FJFI ČVUT.
 
-## Přáprava prostředí
+## Příprava prostředí
 
 Úplně nejdřív si prosím nainstalujte node a npm podle [návodu](docs/install_node.md).
 I pokud víte co děláte, podívejte se prosím do tohoto návodu, jsou tam specifické verze.
