@@ -1,18 +1,18 @@
 import {maxcredits, maxlength} from "./constants";
 
-const parseCredits = (creditsString) => {
-    if (!creditsString) return [1, maxcredits];
+const twoElementParser = (parsedString, maxvalue) => {
+    if (!parsedString) return [1, maxvalue];
     let re = new RegExp("([0-9]+)-([0-9]+)");
-    let match = creditsString.match(re);
+    let match = parsedString.match(re);
     return [match[1], match[2]].map(letter => parseInt(letter));
 }
 
-//TODO: make this one function with parseCredits
+const parseCredits = (creditsString) => {
+    return twoElementParser(creditsString, maxcredits)
+}
+
 const parseLength = (lengthString) => {
-    if(!lengthString) return [1, maxlength];
-    let re = new RegExp("([0-9]+)-([0-9]+)");
-    let match = lengthString.match(re);
-    return [match[1], match[2]].map(letter=>parseInt(letter));
+    return twoElementParser(lengthString, maxlength)
 }
 
 export {parseCredits, parseLength}
