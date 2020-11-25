@@ -5,9 +5,10 @@ import SearchBar from "./SearchBar";
 import DayPicker from "./DayPicker";
 import {useQuery} from "./hooks";
 import Filters from "./Filters";
-import {daysInWeek, maxcredits} from "./constants";
+import {daysInWeek, maxcredits, maxlength} from "./constants";
 import CreditsSlider from "./CreditsSlider";
-import {parseCredits} from "./utility.js"
+import {parseCredits, parseLength} from "./utility.js"
+import LengthSlider from "./LengthSlider";
 
 
 const daysToInfo = (days) => {
@@ -33,6 +34,9 @@ const QueryForm = ({history}) => {
 
     const [credits, setCredits] = useState(parseCredits(queryRoute.get("credits")));
 
+
+    const [length, setLength] = useState(parseLength(queryRoute.get("length")));
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let params = '';
@@ -44,6 +48,7 @@ const QueryForm = ({history}) => {
         }
         if (params.charAt(0) === '&') params = params.substr(1);
         params += '&credits=' + credits[0] + '-' +  credits[1];
+        params += '&length=' + length[0] + '-' + length[1];
         return history.push('/search?' + params);
     };
 
@@ -53,6 +58,7 @@ const QueryForm = ({history}) => {
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
                 <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
+                <LengthSlider value={length} onChange={setLength} maxvalue={maxlength}/>
             </Filters>
         </Box>
     );
