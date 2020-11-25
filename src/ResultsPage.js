@@ -32,7 +32,7 @@ const ResultsPage = () => {
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
     subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
     subjects = subjects.filter(subject => (subject.credits >= credits[0] && subject.credits <= credits[1]));
-    subjects = subjects.filter(subject => (subject.length >= length[0] && subject.length <= length[1]));
+    subjects = subjects.filter(subject => (subject.len >= length[0] && subject.len <= length[1]));
     return (
         <React.Fragment>
             <ResultsBar />
