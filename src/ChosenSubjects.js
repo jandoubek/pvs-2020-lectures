@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSubjects} from "./hooks";
 
@@ -22,10 +21,6 @@ const ChosenSubjects = () => {
             První předmět vyučuje: {subjects[0]["lecturer"]}
         </div>
     );
-};
-
-ChosenSubjects.propTypes = {
-
 };
 
 export default ChosenSubjects;
