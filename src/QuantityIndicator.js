@@ -5,7 +5,6 @@ import LinearProgress from "@material-ui/core/LinearProgress";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import Tooltip from "@material-ui/core/Tooltip"
-import Paper from "@material-ui/core/Paper"
 
 
 const CustomLinearProgress = withStyles((theme) => ({
@@ -18,13 +17,12 @@ const CustomLinearProgress = withStyles((theme) => ({
     }
 }))(LinearProgress);
 
-const QuantityIndicator = ({value, valueSecond=0, maxValue=100, color="primary", label, tooltip, paper}) => {
+const QuantityIndicator = ({value, valueSecond=0, maxValue=100, color="primary", label, tooltip}) => {
     return (
         label ?
             <Tooltip title={tooltip}>
-            <Paper square elevation={paper ? 1 : 0}>
             <Box display="flex" alignItems="center">
-                <Box mr={1} ml={1} width={32}>
+                <Box mr={1} ml={1} width={52}>
                     {/* <Tooltip title={tooltip}>{label}</Tooltip> */}
                     {label}
                 </Box>
@@ -37,7 +35,6 @@ const QuantityIndicator = ({value, valueSecond=0, maxValue=100, color="primary",
                     />
                 </Box>
             </Box>
-            </Paper>
             </Tooltip>
         :
             <Tooltip title={tooltip}>

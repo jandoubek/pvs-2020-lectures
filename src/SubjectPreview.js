@@ -3,20 +3,13 @@ import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
-import Typography from "@material-ui/core/Typography";
-import Grid from "@material-ui/core/Grid";
-
 import Box from "@material-ui/core/Box";
-import Paper from "@material-ui/core/Paper";
-import Tooltip from "@material-ui/core/Tooltip";
-import Divider from "@material-ui/core/Divider";
+import Grid from "@material-ui/core/Grid";
+import Typography from "@material-ui/core/Typography";
 
 import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator"
 import {daysInWeek} from "./constants";
-
-import HourglassEmptyOutlined from "@material-ui/icons/HourglassEmptyOutlined"
-import CakeOutlined from "@material-ui/icons/CakeOutlined"
 
 
 const formatDay = (day) => {
@@ -29,61 +22,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-// TODO Temporary
-const paper = false
-
 /** Assigned to Jan */
-const SubjectPreview = ({subject, variant}) => {
+const SubjectPreview = ({subject}) => {
     const classes = useStyles()
 
     // TODO Temporary hacks
     subject.name = "Průmyslový vývoj software"
 
     return (
-        <React.Fragment>
-        <ListItem key={subject.code}>
+        <ListItem key={subject.code} style={{display: "block"}}>
+            <ListItemText primary={<SubjectDialog subject={subject}/>}/>
+
             <Typography component="div" variant="body2" color="textSecondary">
-            {/* <ListItemText
-                component="div"
-                primary={
-                    <SubjectDialog subject={subject}/>
-                }
-                /> */}
-            {subject.day <= 2 ?
             <Grid container spacing={0} justify="space-between">
-                <Grid item xs={12} sm={12}>
-                    <Typography component="div" variant="body1">
-                    <SubjectDialog subject={subject}/>
-                    </Typography>
-                </Grid>
-                <Grid item xs={10} sm={6}>
-                    <ItemFirstLine subject={subject}/>
-                </Grid>
-                <Grid item xs={2} sm={1}>
-                    <ItemExamType subject={subject}/>
-                </Grid>
-                <Grid item xs={6} sm={2}>
-                    <ItemCredits subject={subject} useBar/>
-                </Grid>
-                <Grid item xs={6} sm={2}>
-                    <ItemHours subject={subject} useBar/>
-                </Grid>
-
-                <Grid item xs={12} sm={12}>
-                    <ItemTimetable subject={subject}/>
-                </Grid>
-
-                <Grid item xs={12} sm={12}>
-                    <ItemAnnotation subject={subject}/>
-                </Grid>
-            </Grid>
-            : subject.day <= 4 ?
-            <Grid container spacing={0} justify="space-between">
-                <Grid item xs={12} sm={12}>
-                    <Typography component="div" variant="body1">
-                    <SubjectDialog subject={subject}/>
-                    </Typography>
-                </Grid>
                 <Grid container item xs={12} sm={9} spacing={1} justify="space-between">
                     <Grid item xs={10} sm={6}>
                         <ItemFirstLine subject={subject}/>
@@ -108,11 +59,8 @@ const SubjectPreview = ({subject, variant}) => {
                     </Grid>
                 </Grid>
             </Grid>
-            : "unknown variant"}
             </Typography>
         </ListItem>
-        {/* <Divider component="li"/> */}
-        </React.Fragment>
     );
 };
 
@@ -138,11 +86,9 @@ const ItemFirstLine = ({subject}) => {
 
 const ItemExamType = ({subject}) => {
     return (
-        <Paper square elevation={paper ? 1 : 0}>
         <Box ml={1}>
             <Typography variant="body2" color="textSecondary" align="center" component="span">{"z zk"}</Typography>
         </Box>
-        </Paper>
     );
 };
 
@@ -169,49 +115,31 @@ const ItemAnnotation = ({subject}) => {
 };
 
 
-const ItemCredits = ({subject, useBar}) => {
+const ItemCredits = ({subject}) => {
     return(
-        useBar ?
         <QuantityIndicator
             value={3}
             maxValue={12}
-            tooltip={
-                // "kredity"
-                "3 kredity"
-            }
+            tooltip={"3 kredity"}
             label={
-                // <Typography variant="body2" color="textSecondary" align="right">{"3"}</Typography>
-                // <CakeOutlined fontSize="small"/>
                 <Typography variant="body2" color="textSecondary" align="right" component="span">{"kr"}</Typography>
             }
-            paper={paper}
         />
-        :
-        <Typography variant="body2" color="textSecondary" align="right">{"3 kr"}</Typography>
     );
 };
 
 
-const ItemHours = ({subject, useBar}) => {
+const ItemHours = ({subject}) => {
     return(
-        useBar ?
         <QuantityIndicator
             value={Number(subject.length)}
             valueSecond={2}
             maxValue={12}
             color="secondary"
-            tooltip={
-                // "hodiny p+cv"
-                "2h přednášky + 2h cvičení"
-            }
+            tooltip={"2h přednášky + 2h cvičení"}
             label={
-                // <Typography variant="body2" color="textSecondary" align="right">{"2+2"}</Typography>
-                // <HourglassEmptyOutlined fontSize="small"/>
                 <Typography variant="body2" color="textSecondary" align="right" component="span">{"h"}</Typography>
             }
-            paper={paper}
         />
-        :
-        <Typography variant="body2" color="textSecondary" align="right">{"2+2 h"}</Typography>
     );
 };
