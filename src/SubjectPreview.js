@@ -99,9 +99,9 @@ const ItemTimetable = ({subject, align="left"}) => {
     return (
         // TODO Put real values here (rozvrh)
         <Typography variant="body2" align={align} gutterBottom>
-            {"Rozvrhováno: "}{formatDay(subject.day)}
-            {subject.day === 4 ? ", úterý" : null}
-            {subject.day === 1 ? ", pátek" : null}
+            {formatDay(subject.day) + " 7:30"}
+            {subject.day === 4 ? ", úterý 17:30" : null}
+            {subject.day === 1 ? ", pátek 18:30" : null}
         </Typography>
     );
 };
