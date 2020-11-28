@@ -74,6 +74,7 @@ export default SubjectPreview;
 // TODO Probably should move these definitions somewhere else in the future
 const ItemFirstLine = ({subject}) => {
     return (
+        // TODO Put real values here (katedra)
         <Typography variant="body2" gutterBottom>
             <Typography component="span" variant="body2" color="textPrimary">
                 {"18" + subject.code}
@@ -86,8 +87,9 @@ const ItemFirstLine = ({subject}) => {
 
 const ItemExamType = ({subject}) => {
     return (
-        <Box ml={1}>
-            <Typography variant="body2" color="textSecondary" align="center" component="span">{"z zk"}</Typography>
+        // TODO Put real values here (zkouska)
+        <Box textAlign="center">
+            {"z zk"}
         </Box>
     );
 };
@@ -95,6 +97,7 @@ const ItemExamType = ({subject}) => {
 
 const ItemTimetable = ({subject, align="left"}) => {
     return (
+        // TODO Put real values here (rozvrh)
         <Typography variant="body2" align={align} gutterBottom>
             {"Rozvrhováno: "}{formatDay(subject.day)}
             {subject.day === 4 ? ", úterý" : null}
@@ -106,6 +109,7 @@ const ItemTimetable = ({subject, align="left"}) => {
 
 const ItemAnnotation = ({subject}) => {
     return (
+        // TODO Put real values here (anotace)
         <Typography variant="body2" align="justify">
             /anotace/ Lorem ipsum dolor sit amet, consectetur adipiscing elit,
             sed do eiusmod tempor incididunt ut labore et dolore magna
@@ -118,12 +122,13 @@ const ItemAnnotation = ({subject}) => {
 const ItemCredits = ({subject}) => {
     return(
         <QuantityIndicator
+            // TODO Put real values here (kredity, kredity max)
             value={3}
-            maxValue={12}
+            valueMax={12 }
+            label={"15 kr"}
+            labelWidth={"7em"}
             tooltip={"3 kredity"}
-            label={
-                <Typography variant="body2" color="textSecondary" align="right" component="span">{"kr"}</Typography>
-            }
+            color="primary"
         />
     );
 };
@@ -132,14 +137,14 @@ const ItemCredits = ({subject}) => {
 const ItemHours = ({subject}) => {
     return(
         <QuantityIndicator
+            // TODO Put real values here (hodiny, hodiny cvika, hodiny max)
             value={Number(subject.length)}
             valueSecond={2}
-            maxValue={12}
-            color="secondary"
+            valueMax={12}
+            label={"15+15 h"}
+            labelWidth={"7em"}
             tooltip={"2h přednášky + 2h cvičení"}
-            label={
-                <Typography variant="body2" color="textSecondary" align="right" component="span">{"h"}</Typography>
-            }
+            color="secondary"
         />
     );
 };

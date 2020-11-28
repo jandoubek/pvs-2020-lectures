@@ -17,34 +17,24 @@ const CustomLinearProgress = withStyles((theme) => ({
     }
 }))(LinearProgress);
 
-const QuantityIndicator = ({value, valueSecond=0, maxValue=100, color="primary", label, tooltip}) => {
+const QuantityIndicator = ({value, valueSecond=0, valueMax=100, label,
+                            labelWidth, tooltip, color="primary"}) => {
     return (
-        label ?
-            <Tooltip title={tooltip}>
-            <Box display="flex" alignItems="center">
-                <Box mr={1} ml={1} width={52}>
-                    {/* <Tooltip title={tooltip}>{label}</Tooltip> */}
-                    {label}
-                </Box>
-                <Box width="100%">
-                    <CustomLinearProgress
-                        variant="buffer"
-                        color={color}
-                        value={100 * value / maxValue}
-                        valueBuffer={100 * (value + valueSecond) / maxValue}
-                    />
-                </Box>
+        <Tooltip title={tooltip}>
+        <Box display="flex" alignItems="center">
+            <Box width={labelWidth} mr={1} textAlign="right">
+                {label}
             </Box>
-            </Tooltip>
-        :
-            <Tooltip title={tooltip}>
+            <Box width="100%">
                 <CustomLinearProgress
                     variant="buffer"
                     color={color}
-                    value={100 * value / maxValue}
-                    valueBuffer={100 * (value + valueSecond) / maxValue}
+                    value={100 * value / valueMax}
+                    valueBuffer={100 * (value + valueSecond) / valueMax}
                 />
-            </Tooltip>
+            </Box>
+        </Box>
+        </Tooltip>
     );
 };
 
