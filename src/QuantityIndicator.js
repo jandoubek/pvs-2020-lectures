@@ -17,7 +17,7 @@ const CustomLinearProgress = withStyles((theme) => ({
     }
 }))(LinearProgress);
 
-const QuantityIndicator = ({value, valueSecond=0, valueMax=100, label,
+const QuantityIndicator = ({value, valueSecond=0, valueMax, label,
                             labelWidth, tooltip, color="primary"}) => {
     return (
         <Tooltip title={tooltip}>
@@ -39,7 +39,14 @@ const QuantityIndicator = ({value, valueSecond=0, valueMax=100, label,
 };
 
 QuantityIndicator.propTypes = {
+    value: PropTypes.number.isRequired,
+    valueSecond: PropTypes.number,
+    valueMax: PropTypes.number.isRequired,
 
+    label: PropTypes.string.isRequired,
+    labelWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    tooltip: PropTypes.string.isRequired,
+    color: PropTypes.string,
 };
 
 export default QuantityIndicator;

@@ -65,7 +65,21 @@ const SubjectPreview = ({subject}) => {
 };
 
 SubjectPreview.propTypes = {
+    subject: PropTypes.shape({
+        code: PropTypes.string.isRequired,
+        lecturer: PropTypes.string.isRequired,
+        // day: PropTypes.string,  // TODO Number or string?
+        time: PropTypes.string.isRequired,
+        credits: PropTypes.number.isRequired,
+        // length: PropTypes.string.isRequired,  // TODO Number or string? ... "2+2"?
 
+        // TODO Following things are not yet in toy data
+        // name: PropTypes.string.isRequired,
+        // department: PropTypes.string.isRequired,
+        // departmentCode: PropTypes.string.isRequired,
+        // examType: PropTypes.string.isRequired,
+        // annotation: PropTypes.string.isRequired,
+    })
 };
 
 export default SubjectPreview;
