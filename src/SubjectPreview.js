@@ -27,7 +27,8 @@ const SubjectPreview = ({subject}) => {
     const classes = useStyles()
 
     // TODO Temporary hacks
-    subject.name = "Průmyslový vývoj software"
+    subject.name = "Průmyslový vývoj software";
+    subject.day = 0;
 
     return (
         <ListItem key={subject.code} style={{display: "block"}}>
@@ -68,10 +69,10 @@ SubjectPreview.propTypes = {
     subject: PropTypes.shape({
         code: PropTypes.string.isRequired,
         lecturer: PropTypes.string.isRequired,
-        // day: PropTypes.string,  // TODO Number or string?
+        // day: PropTypes.number,  // TODO Should be number and not english string as it is now (toy data)
         time: PropTypes.string.isRequired,
         credits: PropTypes.number.isRequired,
-        // length: PropTypes.string.isRequired,  // TODO Number or string? ... "2+2"?
+        len: PropTypes.string.isRequired,  // TODO Number or string? ... "2+2"?
 
         // TODO Following things are not yet in toy data
         // name: PropTypes.string.isRequired,
@@ -111,11 +112,8 @@ const ItemExamType = ({subject}) => {
 
 const ItemTimetable = ({subject, align="left"}) => {
     return (
-        // TODO Put real values here (rozvrh)
         <Typography variant="body2" align={align} gutterBottom>
-            {formatDay(subject.day) + " 7:30"}
-            {subject.day === 4 ? ", úterý 17:30" : null}
-            {subject.day === 1 ? ", pátek 18:30" : null}
+            {`${formatDay(subject.day)} ${subject.time}`}
         </Typography>
     );
 };
@@ -136,12 +134,12 @@ const ItemAnnotation = ({subject}) => {
 const ItemCredits = ({subject}) => {
     return(
         <QuantityIndicator
-            // TODO Put real values here (kredity, kredity max)
-            value={3}
-            valueMax={12 }
-            label={"15 kr"}
+            // TODO Put real values here (kredity max)
+            value={Number(subject.credits)}
+            valueMax={12}
+            label={`${subject.credits} kr`}
             labelWidth={"7em"}
-            tooltip={"3 kredity"}
+            tooltip={`${subject.credits} kredity`}
             color="primary"
         />
     );
@@ -151,13 +149,13 @@ const ItemCredits = ({subject}) => {
 const ItemHours = ({subject}) => {
     return(
         <QuantityIndicator
-            // TODO Put real values here (hodiny, hodiny cvika, hodiny max)
-            value={Number(subject.length)}
+            // TODO Put real values here (hodiny cvika, hodiny max)
+            value={Number(subject.len)}
             valueSecond={2}
             valueMax={12}
-            label={"15+15 h"}
+            label={`${subject.len}+? h`}
             labelWidth={"7em"}
-            tooltip={"2h přednášky + 2h cvičení"}
+            tooltip={`${subject.len}h přednášky + ?h cvičení`}
             color="secondary"
         />
     );

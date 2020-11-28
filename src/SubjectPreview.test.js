@@ -13,7 +13,7 @@ test('SubjectPreview renders code', () => {
     time: "11:30",
     day: 0,
     credits: 2,
-    length: "2",
+    len: "2",
   }
   render(<SubjectPreview subject={testSubject} />);
 
