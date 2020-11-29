@@ -47,16 +47,28 @@ const getSubjectColumns = subjects => {
 }
 
 
+const updateTotalRow = subjects => {
+    // prepocitej soucty v poslednim radku
+    let totalCredits = 0;
+    let totalLength = 0;
+    for (let i = 0; i < subjects.length; i++)
+    {
+        totalCredits += subjects[i].credits;
+        totalLength += Number(subjects[i]["length"]);
+    }
+
+    return [{id:0, credits:totalCredits, length:totalLength}]
+}
 
 /** Assigned to Hynek */
 // TODO Vypadá to jako job pro https://material-ui.com/components/tables/
 // TODO Tady je example jak dostat data: {subjects[0]["lecturer"]}
 const ChosenSubjects = () => {
     // viz https://reactjs.org/docs/hooks-state.html
-    const [selectedSubjects, setSelectedSubjects] = React.useState([]);
+    const [selection, setSelection] = React.useState([]);
     const [subjectRows, setSubjectRows] = React.useState(getSubjectRows(useSubjects()));
+    const [totalRow, setTotalRow] = React.useState(updateTotalRow(subjectRows));
 
-    //var subjects = getSubjectRows(useSubjects());
     const classes = useStyles();
     return (
         <div>
@@ -68,22 +80,35 @@ const ChosenSubjects = () => {
                 checkboxSelection={true}
                 // zmen vyber
                 onSelectionChange={(newSelection) => {
-                    setSelectedSubjects(newSelection.rowIds);
+                    setSelection(newSelection.rowIds);
                 }}
                 hideFooter={true}
             />
         </div>
-        <div>vybrané řádky: {selectedSubjects.map(rowId => ','+rowId)}</div>
+        <div>vybrané řádky: {selection.map(rowId => ','+rowId)}</div>
         <Button
             variant="outlined"
             color="secondary"
             startIcon={<DeleteIcon />}
             // vymaz vybrane radky (zustavaji ty, ktere nebyly vybrany)
-            onClick={() => setSubjectRows(
-                subjectRows.filter(row => !selectedSubjects.includes(row.id.toString())))
+            onClick={() => {
+                setSubjectRows(
+                    subjectRows.filter(row => !selection.includes(row.id.toString())));
+                setTotalRow(updateTotalRow(subjectRows));
+                setSelection([]);
+            }
             }>
             Odstranit vybrané
         </Button>
+        <div style={{ height: 110, width: '100%' }}>
+            <DataGrid
+                columns={subjectColumns2}
+                rows= {totalRow}
+                //rowCount={1}
+                hideFooter={true}
+                //disableSelectionOnClick={true}
+            />
+        </div>
         </div>
     );
 };
