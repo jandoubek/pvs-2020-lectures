@@ -2,19 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSubjects} from "./hooks";
+import DeleteIcon from '@material-ui/icons/Delete';
+import { Button } from '@material-ui/core';
 import {DataGrid} from "@material-ui/data-grid";
 import {subjectColumns} from "./ChosenSubjectsColumns"
-
-// const subjectColumns = [
-//     //{ field: 'id', headerName: 'ID', width: 70 },
-//     { field: 'code', headerName: 'Kód', width: 100 },
-//     //{ field: 'name', headerName: 'Název', width: 150 },
-//     { field: 'lecturer', headerName: 'Vyučující', width: 200 },
-//     { field: 'length', headerName: 'Dotace', type: 'number', width: 100 },
-//     { field: 'day', headerName: 'Den', type: 'number',  width: 100 },
-//     //{ field: 'time', headerName: 'Čas', width: 100 },
-//     { field: 'room', headerName: 'Místnost', width: 150 }
-// ];
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,6 +13,7 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+// vychozi razeni
 const sortModel = [
     {
         field: 'code',
@@ -54,19 +46,44 @@ const getSubjectColumns = subjects => {
     return columns;
 }
 
+
+
 /** Assigned to Hynek */
 // TODO Vypadá to jako job pro https://material-ui.com/components/tables/
 // TODO Tady je example jak dostat data: {subjects[0]["lecturer"]}
 const ChosenSubjects = () => {
-    const subjects = getSubjectRows(useSubjects());
+    // viz https://reactjs.org/docs/hooks-state.html
+    const [selectedSubjects, setSelectedSubjects] = React.useState([]);
+    const [subjectRows, setSubjectRows] = React.useState(getSubjectRows(useSubjects()));
+
+    //var subjects = getSubjectRows(useSubjects());
     const classes = useStyles();
     return (
+        <div>
         <div style={{ height: 550, width: '100%' }}>
             <DataGrid
                 sortModel={sortModel}
                 columns={subjectColumns}
-                rows= {subjects}
+                rows= {subjectRows}
+                checkboxSelection={true}
+                // zmen vyber
+                onSelectionChange={(newSelection) => {
+                    setSelectedSubjects(newSelection.rowIds);
+                }}
+                hideFooter={true}
             />
+        </div>
+        <div>vybrané řádky: {selectedSubjects.map(rowId => ','+rowId)}</div>
+        <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<DeleteIcon />}
+            // vymaz vybrane radky (zustavaji ty, ktere nebyly vybrany)
+            onClick={() => setSubjectRows(
+                subjectRows.filter(row => !selectedSubjects.includes(row.id.toString())))
+            }>
+            Odstranit vybrané
+        </Button>
         </div>
     );
 };
