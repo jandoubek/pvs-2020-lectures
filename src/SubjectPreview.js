@@ -12,19 +12,16 @@ import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek} from "./constants";
 
 
-const formatDay = (day) => {
-    return daysInWeek[day];
-}
-
-
 const useStyles = makeStyles((theme) => ({
     root: {
-        display: "block"
+        display: "block"  // This overrides horizontal layout of ListItem's children
     },
 }));
 
 
-/** Assigned to Jan */
+/**
+ * Displays brief information about the subject organized in a small grid.
+ */
 const SubjectPreview = ({subject}) => {
     const classes = useStyles()
 
@@ -35,39 +32,38 @@ const SubjectPreview = ({subject}) => {
     return (
         <ListItem key={subject.code} className={classes.root}>
             <ListItemText primary={<SubjectDialog subject={subject}/>}/>
-
             <Typography component="div" variant="body2" color="textSecondary">
-            <Grid container spacing={0} justify="space-between">
-                <Grid container item xs={12} sm={9} spacing={1} justify="space-between">
-                    <Grid item xs={10} sm={6}>
-                        <ItemFirstLine subject={subject}/>
+                <Grid container spacing={0} justify="space-between">
+                    <Grid container item xs={12} sm={9} spacing={1} justify="space-between">
+                        <Grid item xs={12} sm={6}>
+                            <ItemFirstLine subject={subject}/>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                            <ItemTimetable subject={subject} align="right"/>
+                        </Grid>
+                        <Grid item xs={12} sm={12}>
+                            <ItemAnnotation subject={subject}/>
+                        </Grid>
                     </Grid>
-                    <Grid item xs={6} sm={6}>
-                        <ItemTimetable subject={subject} align="right"/>
-                    </Grid>
-
-                    <Grid item xs={9} sm={12}>
-                        <ItemAnnotation subject={subject}/>
+                    <Grid container item xs={12} sm={3} spacing={1}>
+                        <Grid item xs={12}>
+                            <ItemExamType subject={subject}/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <ItemCredits subject={subject} useBar/>
+                        </Grid>
+                        <Grid item xs={12}>
+                            <ItemHours subject={subject} useBar/>
+                        </Grid>
                     </Grid>
                 </Grid>
-                <Grid container item xs={12} sm={3} spacing={1}>
-                    <Grid item xs={12}>
-                        <ItemExamType subject={subject}/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ItemCredits subject={subject} useBar/>
-                    </Grid>
-                    <Grid item xs={12}>
-                        <ItemHours subject={subject} useBar/>
-                    </Grid>
-                </Grid>
-            </Grid>
             </Typography>
         </ListItem>
     );
 };
 
 SubjectPreview.propTypes = {
+    /** Data representing 1 subject */
     subject: PropTypes.shape({
         code: PropTypes.string.isRequired,
         lecturer: PropTypes.string.isRequired,
@@ -115,7 +111,7 @@ const ItemExamType = ({subject}) => {
 const ItemTimetable = ({subject, align="left"}) => {
     return (
         <Typography variant="body2" align={align} gutterBottom>
-            {`${formatDay(subject.day)} ${subject.time}`}
+            {`${daysInWeek[subject.day]} ${subject.time}`}
         </Typography>
     );
 };

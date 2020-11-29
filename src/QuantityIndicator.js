@@ -10,12 +10,16 @@ const CustomLinearProgress = withStyles((theme) => ({
     root: {
         height: 4,
     },
-    dashed: { /* Disable dashed animation for variant="buffer" */
+    dashed: {  // Disable dashed animation for variant="buffer"
         animation: "",
         display: "none",
     }
 }))(LinearProgress);
 
+
+/**
+ * Displays a horizontal bar indicating a numerical value (optionally 2 values).
+ */
 const QuantityIndicator = ({value, valueSecond=0, valueMax, label,
                             labelWidth, tooltip, color="primary"}) => {
     return (
@@ -38,14 +42,20 @@ const QuantityIndicator = ({value, valueSecond=0, valueMax, label,
 };
 
 QuantityIndicator.propTypes = {
+    /** Main value. */
     value: PropTypes.number.isRequired,
+    /** Optional secondary value, uses a lighter shade of the color. */
     valueSecond: PropTypes.number,
+    /** Maximal value, determines the width of the component. */
     valueMax: PropTypes.number.isRequired,
-
+    /** Text label, placed on the left side. */
     label: PropTypes.string.isRequired,
+    /** Estimated width of the text label. */
     labelWidth: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    /** Text for the tooltip. */
     tooltip: PropTypes.string.isRequired,
-    color: PropTypes.string,
+    /** Color of the bar. */
+    color: PropTypes.oneOf(["primary", "secondary"]),
 };
 
 export default QuantityIndicator;
