@@ -8,7 +8,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import SubjectDialog from "./SubjectDialog";
-import QuantityIndicator from "./QuantityIndicator"
+import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek} from "./constants";
 
 
@@ -18,7 +18,9 @@ const formatDay = (day) => {
 
 
 const useStyles = makeStyles((theme) => ({
-    root: {},
+    root: {
+        display: "block"
+    },
 }));
 
 
@@ -31,7 +33,7 @@ const SubjectPreview = ({subject}) => {
     subject.day = 0;
 
     return (
-        <ListItem key={subject.code} style={{display: "block"}}>
+        <ListItem key={subject.code} className={classes.root}>
             <ListItemText primary={<SubjectDialog subject={subject}/>}/>
 
             <Typography component="div" variant="body2" color="textSecondary">
@@ -94,7 +96,7 @@ const ItemFirstLine = ({subject}) => {
             <Typography component="span" variant="body2" color="textPrimary">
                 {"18" + subject.code}
             </Typography>
-            {" — " + "KSI" + " — " + subject.lecturer}
+            {` — KSI — ${subject.lecturer}`}
         </Typography>
     );
 };
