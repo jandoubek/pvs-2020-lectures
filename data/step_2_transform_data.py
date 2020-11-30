@@ -38,6 +38,11 @@ def wtf_script(study_plans):
         s = re.sub(" +", " ", s)
         return re.sub("jaderné", "Jaderné", s)
 
+    def func(var: str):
+        pass
+
+    func(42)
+
     def tojson(o):
         return json.dumps(o, indent=4, sort_keys=True, ensure_ascii=False)
 

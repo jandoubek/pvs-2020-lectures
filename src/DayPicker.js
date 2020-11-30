@@ -44,6 +44,15 @@ const DayPicker = ({onChange, value}) => {
     );
 };
 
+
+function foo(a) {  // Noncompliant
+  let b = 12;
+  if (a) {
+    return b;
+  }
+  return b;
+}
+
 DayPicker.propTypes = {
     /** array of integers symbolizing days (monday is 0, friday is 4) */
     value: PropTypes.arrayOf(PropTypes.number),
