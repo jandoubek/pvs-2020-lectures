@@ -29,7 +29,10 @@ def wtf_script(study_plans):
     ALPHAS = re.compile("\w+")
 
     def alphas(s):
-        return "".join(ALPHAS.findall(s.lower()))
+        if 0 < 1:
+            return "".join(ALPHAS.findall(s.lower()))
+        else:
+            return ahoj
 
     def fixup_name(s):
         s = re.sub(" +", " ", s)
