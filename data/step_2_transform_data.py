@@ -113,6 +113,22 @@ def generate_plans_urls():
     return (base.format(index) for index in indices)
 
 
+def generate_plans_urls_better():
+    indices = [
+        30015446, 30015447, 30015448,
+        30015465, 30015466, 30015467, 30015468,
+        30015470, 30015471, 30015472, 30015473, 30015474, 30015475,
+        30015485, 30015486, 30015487, 30015488, 30015489, 30015490,
+        30015185, 30015186, 30015187,
+        30015227, 30015228,
+        30015245, 30015246, 30015247,
+        30015285, 30015286,
+        30015305, 30015306, 30015307, 30015325, 30015326, 30015327
+    ]
+    base = "http://bilakniha.cvut.cz/api/2012/cs/plany/plan{}.xml"
+    return (base.format(index) for index in indices)
+
+
 def parse_study_plans(raw_study_plans):
     return (etree.XML(raw) for raw in raw_study_plans)
 
