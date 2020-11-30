@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSubjects} from "./hooks";
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -111,10 +110,6 @@ const ChosenSubjects = () => {
         </div>
         </div>
     );
-};
-
-ChosenSubjects.propTypes = {
-
 };
 
 export default ChosenSubjects;

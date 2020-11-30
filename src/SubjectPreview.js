@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import ListItemText from "@material-ui/core/ListItemText";
 import SubjectDialog from "./SubjectDialog";
 import Typography from "@material-ui/core/Typography";
@@ -40,10 +39,6 @@ const SubjectPreview = ({subject}) => {
                 }/>
         </ListItem>
     );
-};
-
-SubjectPreview.propTypes = {
-
 };
 
 export default SubjectPreview;

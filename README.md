@@ -1,8 +1,12 @@
 # PVS 2020 Předměty
 
-Aplikace pro vyhledávání předmětů na FJFI ĆVUT.
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=jandoubek_pvs-2020-lectures&metric=bugs)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=jandoubek_pvs-2020-lectures&metric=security_rating)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)
 
-## Přáprava prostředí
+[![SonarCloud](https://sonarcloud.io/images/project_badges/sonarcloud-white.svg)](https://sonarcloud.io/dashboard?id=jandoubek_pvs-2020-lectures)
+
+Aplikace pro vyhledávání předmětů na FJFI ČVUT.
+
+## Příprava prostředí
 
 Úplně nejdřív si prosím nainstalujte node a npm podle [návodu](docs/install_node.md).
 I pokud víte co děláte, podívejte se prosím do tohoto návodu, jsou tam specifické verze.
