@@ -1,4 +1,3 @@
-
 /** Day string s in czech */
 export const daysInWeek = [
     "pondělí",
@@ -13,3 +12,30 @@ export const daysInWeek = [
 const maxcredits = 40;
 const maxlength = 5;
 export {maxcredits, maxlength};
+
+export const timeMarks = [
+    {
+        value: 7,
+        label: '7:30',
+    },
+    {
+        value: 9,
+        label: '9:30',
+    },
+    {
+        value: 11,
+        label: '11:30',
+    },
+    {
+        value: 13,
+        label: '13:30',
+    },
+    {
+        value: 15,
+        label: '15:30',
+    },
+    {
+        value: 17,
+        label: '17:30',
+    },
+];

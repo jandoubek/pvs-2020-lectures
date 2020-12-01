@@ -9,6 +9,7 @@ import {daysInWeek, maxcredits, maxlength} from "./constants";
 import CreditsSlider from "./CreditsSlider";
 import {parseCredits, parseLength} from "./utility.js"
 import LengthSlider from "./LengthSlider";
+import TimeSlider from "./TimeSlider";
 
 
 const daysToInfo = (days) => {
@@ -57,6 +58,7 @@ const QueryForm = ({history}) => {
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
+                <TimeSlider/>
                 <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
                 <LengthSlider value={length} onChange={setLength} maxvalue={maxlength}/>
             </Filters>
