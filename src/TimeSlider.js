@@ -4,15 +4,12 @@ import {timeMarks} from "./constants";
 
 
 
-const TimeSlider = () => {
-    const minvalue = timeMarks[0].value;
-    const maxvalue = timeMarks[timeMarks.length-1].value;
-    const [value, onChange] = React.useState([minvalue, maxvalue])
-
+const TimeSlider = ({value, onChange, defaultvalues}) => {
     const handleChange = (event, value) => {
         onChange(value);
         console.log(value);
     };
+
     return (
         <div>
             <Slider
@@ -21,8 +18,8 @@ const TimeSlider = () => {
                 step={null}
                 valueLabelDisplay="off"
                 marks={timeMarks}
-                min={minvalue}
-                max={maxvalue}
+                min={defaultvalues[0]}
+                max={defaultvalues[1]}
                 onChange={handleChange}
             />
         </div>
