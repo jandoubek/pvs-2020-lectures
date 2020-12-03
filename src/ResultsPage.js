@@ -4,8 +4,8 @@ import {Box} from "@material-ui/core";
 import ResultsList from "./ResultsList";
 import {useLocation} from "react-router-dom";
 import NoResults from "./NoResults";
-import {useSubjects} from "./hooks";
 import {parseCredits, parseLength} from "./utility.js"
+import { connect } from "react-redux";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -22,13 +22,12 @@ const parseDays = (daysString) => {
     return [...daysString].map(letter => parseInt(letter));
 }
 
-const ResultsPage = () => {
+const ResultsPage = ({subjects}) => {
     let queryRoute = useQuery();
     const includes = queryRoute.get("includes");
     const days = parseDays(queryRoute.get("days"));
     const credits = parseCredits(queryRoute.get("credits"));
     const totallength = parseLength(queryRoute.get("totallength"))
-    let subjects = useSubjects();
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
     subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
     subjects = subjects.filter(subject => (subject.credits >= credits[0] && subject.credits <= credits[1]));
@@ -47,4 +46,6 @@ const ResultsPage = () => {
     );
 };
 
-export default ResultsPage;
+export default connect(({subjects}) => ({
+    subjects
+}))(ResultsPage);

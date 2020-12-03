@@ -1,6 +1,6 @@
 import React from 'react';
 import {makeStyles} from "@material-ui/core/styles";
-import {useSubjects} from "./hooks";
+import {connect} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -11,8 +11,7 @@ const useStyles = makeStyles((theme) => ({
 /** Assigned to Hynek */
 // TODO Vypadá to jako job pro https://material-ui.com/components/tables/
 // TODO Tady je example jak dostat data: {subjects[0]["lecturer"]}
-const ChosenSubjects = () => {
-    const subjects = useSubjects();
+export const ChosenSubjects = ({subjects}) => {
     const classes = useStyles();
     return (
         <div className={classes.root}>
@@ -23,4 +22,6 @@ const ChosenSubjects = () => {
     );
 };
 
-export default ChosenSubjects;
+export default connect(({subjects}) => ({
+    subjects
+}))(ChosenSubjects);
