@@ -1,11 +1,10 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom'
-import {ChosenSubjects} from "./ChosenSubjects";
-import React from "react";
+import ChosenSubjects from "./ChosenSubjects";
 
 /**Assigned to Hynek */
 test('ChosenSubjects renders text', () => {
-  render(<ChosenSubjects subjects={[{lecturer: 'Virius'}]} />);
+  render(<ChosenSubjects />);
   const linkElement = screen.getByText(/Virius/i);
   expect(linkElement).toBeVisible();
 });
