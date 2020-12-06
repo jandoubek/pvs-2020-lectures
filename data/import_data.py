@@ -180,7 +180,6 @@ async def main():
     if not path.exists(pickle_filename):
         print("Fetching study plans")
         start_time = time.time()
-        # study_plans = asyncio.get_event_loop().run_until_complete(fetch_xml_files(generate_plans_urls()))
         study_plans = await fetch_xml_files(generate_plans_urls())
         print("Fetching took {} seconds".format(time.time() - start_time))
         pickle.dump(study_plans, open(pickle_filename, 'wb'))
