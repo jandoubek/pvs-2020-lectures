@@ -18,17 +18,21 @@ const ResultsList = ({subjects}) => {
 
     return (
         <React.Fragment>
-            <List> { subjects.map(subject =>
-                <SubjectPreview
-                    key={subject.code}
-                    subject={subject}
-                    onShowMore={handleShowMore}
+            <List>
+                {subjects.map(subject =>
+                    <SubjectPreview
+                        key={subject.code}
+                        subject={subject}
+                        onShowMore={handleShowMore}
+                    />
+                )}
+            </List>
+            {showingSubject &&
+                <SubjectDialog
+                    subject={showingSubject}
+                    onClose={handleCloseDialog}
                 />
-            )} </List>
-            <SubjectDialog
-                subject={showingSubject}
-                onClose={handleCloseDialog}
-            />
+            }
         </React.Fragment>
     );
 };
