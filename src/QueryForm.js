@@ -35,7 +35,7 @@ const QueryForm = ({history}) => {
     const [credits, setCredits] = useState(parseCredits(queryRoute.get("credits")));
 
 
-    const [length, setLength] = useState(parseLength(queryRoute.get("length")));
+    const [totallength, setTotalLength] = useState(parseLength(queryRoute.get("totallength")));
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -48,7 +48,7 @@ const QueryForm = ({history}) => {
         }
         if (params.charAt(0) === '&') params = params.substr(1);
         params += '&credits=' + credits[0] + '-' +  credits[1];
-        params += '&length=' + length[0] + '-' + length[1];
+        params += '&totallength=' + totallength[0] + '-' + totallength[1];
         return history.push('/search?' + params);
     };
 
@@ -58,7 +58,7 @@ const QueryForm = ({history}) => {
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
                 <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
-                <LengthSlider value={length} onChange={setLength} maxvalue={maxlength}/>
+                <LengthSlider value={totallength} onChange={setTotalLength} maxvalue={maxlength}/>
             </Filters>
         </Box>
     );
