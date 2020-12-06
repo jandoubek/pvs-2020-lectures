@@ -27,7 +27,6 @@ const ResultsList = ({subjects}) => {
             )} </List>
             <SubjectDialog
                 subject={showingSubject}
-                open={showingSubject !== null}
                 onClose={handleCloseDialog}
             />
         </React.Fragment>
