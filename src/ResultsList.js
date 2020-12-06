@@ -1,14 +1,36 @@
 import React from 'react';
 import List from "@material-ui/core/List";
 import SubjectPreview from "./SubjectPreview";
+import SubjectDialog from "./SubjectDialog";
 
-/** Assigned to Jan */
-//TODO do not really style this unless 100% necessary
+
 const ResultsList = ({subjects}) => {
+    const [showingSubject, setShowingSubject] = React.useState(null);
+
+    const handleShowMore = (e, subject) => {
+        e.preventDefault();
+        setShowingSubject(subject);
+    };
+
+    const handleCloseDialog = () => {
+        setShowingSubject(null);
+    };
+
     return (
-        <List>
-            {subjects.map(subject => <SubjectPreview subject={subject}/>)}
-        </List>
+        <React.Fragment>
+            <List> { subjects.map(subject =>
+                <SubjectPreview
+                    key={subject.code}
+                    subject={subject}
+                    onShowMore={handleShowMore}
+                />
+            )} </List>
+            <SubjectDialog
+                subject={showingSubject}
+                open={showingSubject !== null}
+                onClose={handleCloseDialog}
+            />
+        </React.Fragment>
     );
 };
 

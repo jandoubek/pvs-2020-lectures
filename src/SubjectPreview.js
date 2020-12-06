@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek} from "./constants";
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({subject}) => {
+const SubjectPreview = ({ subject, onShowMore }) => {
     const classes = useStyles()
 
     // TODO Temporary hacks
@@ -30,8 +30,10 @@ const SubjectPreview = ({subject}) => {
     subject.day = 0;
 
     return (
-        <ListItem key={subject.code} className={classes.root}>
-            <ListItemText primary={<SubjectDialog subject={subject}/>}/>
+        <ListItem className={classes.root}>
+            <ListItemText primary={
+                <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.name}</Link>
+            } />
             <Typography component="div" variant="body2" color="textSecondary">
                 <Grid container spacing={0} justify="space-between">
                     <Grid container item xs={12} sm={9} spacing={1} justify="space-between">
@@ -78,13 +80,15 @@ SubjectPreview.propTypes = {
         // departmentCode: PropTypes.string.isRequired,
         // examType: PropTypes.string.isRequired,
         // annotation: PropTypes.string.isRequired,
-    })
+    }),
+
+    /** Event callback - user clicked on subject name and wants more info */
+    onShowMore: PropTypes.func.isRequired
 };
 
 export default SubjectPreview;
 
 
-// TODO Probably should move these definitions somewhere else in the future
 const ItemFirstLine = ({subject}) => {
     return (
         // TODO Put real values here (katedra)
