@@ -33,11 +33,13 @@ const ResultsPage = ({subjects}) => {
 
     // TODO Needs manual fixing
     // subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
+    subjects = subjects.filter(subject => 0 <= days);  // Avoiding warnings, delete this
 
     subjects = subjects.filter(subject => (subject.kredity >= credits[0] && subject.kredity <= credits[1]));
 
     // TODO Needs manual fixing
     // subjects = subjects.filter(subject => (subject.total_len >= totallength[0] && subject.total_len <= totallength[1]));
+    subjects = subjects.filter(subject => 0 <= totallength);  // Avoiding warnings, delete this
 
     // TODO Temporary hack - only show first 20 results instead of all (500+)
     subjects = subjects.slice(0, 20);
