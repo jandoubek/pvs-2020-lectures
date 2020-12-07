@@ -6,9 +6,8 @@ import PropTypes from 'prop-types';
 
 
 const TimeSlider = ({value, onChange, defaultvalues}) => {
-    const handleChange = (event, value) => {
-        onChange(value);
-        console.log(value);
+    const handleChange = (event, val) => {
+        onChange(val);
     };
 
     return (

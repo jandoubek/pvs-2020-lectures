@@ -21,7 +21,7 @@ const parseTime = (timeString) => {
         const minvalue = timeMarks[0].value;
         const maxvalue = timeMarks[timeMarks.length - 1].value;
         return [minvalue, maxvalue];
-    };
+    }
     return twoElementParser(timeString, null);
 };
 
