@@ -6,7 +6,7 @@ export const subjectColumns = [
     { field: 'code', headerName: 'Kód', width: 100 },
     { field: 'name', headerName: 'Název předmětu', width: 200 },
     { field: 'lecturer', headerName: 'Vyučující', width: 150 },
-    { field: 'length', headerName: 'Délka', type: 'number', width: 100 },
+    { field: 'len', headerName: 'Délka', type: 'number', width: 100 },
     { field: 'credits', headerName: 'Kredity', type: 'number', width: 100 },
     { field: 'day', headerName: 'Den', type: 'number',  width: 100 },
     { field: 'time', headerName: 'Čas', width: 100 },
