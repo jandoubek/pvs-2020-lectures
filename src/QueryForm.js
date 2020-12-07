@@ -36,7 +36,7 @@ const QueryForm = ({history}) => {
     const [credits, setCredits] = useState(parseCredits(queryRoute.get("credits")));
 
 
-    const [length, setLength] = useState(parseLength(queryRoute.get("length")));
+    const [totallength, setTotalLength] = useState(parseLength(queryRoute.get("totallength")));
 
     const [time, setTime] = useState(parseTime(queryRoute.get("time")));
     const defaulttime = [timeMarks[0].value, timeMarks[timeMarks.length - 1].value];
@@ -54,6 +54,7 @@ const QueryForm = ({history}) => {
         params += '&credits=' + credits[0] + '-' +  credits[1];
         params += '&length=' + length[0] + '-' + length[1];
         params += '&time=' + time[0] + '-' + time[1];
+        params += '&totallength=' + totallength[0] + '-' + totallength[1];
         return history.push('/search?' + params);
     };
 
@@ -64,7 +65,7 @@ const QueryForm = ({history}) => {
                 <DayPicker value={days} onChange={setDays}/>
                 <TimeSlider onChange={setTime} value={time} defaultvalues={defaulttime}/>
                 <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
-                <LengthSlider value={length} onChange={setLength} maxvalue={maxlength}/>
+                <LengthSlider value={totallength} onChange={setTotalLength} maxvalue={maxlength}/>
             </Filters>
         </Box>
     );
