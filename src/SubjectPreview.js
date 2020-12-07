@@ -84,7 +84,7 @@ const ItemFirstLine = ({subject}) => {
     return (
         // TODO Put real values here (katedra)
         // TODO Use values extracted from subject.rozvrhy (vyucujici)
-        <Typography variant="body2" gutterBottom>
+        <Typography variant="body2">
             <Typography component="span" variant="body2" color="textPrimary">
                 {subject.kod}
             </Typography>
@@ -106,7 +106,7 @@ const ItemExamType = ({subject}) => {
 const ItemTimetable = ({subject, align="left"}) => {
     return (
         // TODO Use values extracted from subject.rozvrhy (day, time)
-        <Typography variant="body2" align={align} gutterBottom>
+        <Typography variant="body2" align={align}>
             {`${daysInWeek[subject.day]} ${subject.time}`}
         </Typography>
     );
