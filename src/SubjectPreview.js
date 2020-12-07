@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 
 import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator";
-import {daysInWeek} from "./constants";
+import {daysInWeek, maxcredits, maxlength} from "./constants";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject, onShowMore }) => {
+const SubjectPreview = ({ subject }) => {
     const classes = useStyles()
 
     return (
@@ -61,23 +61,20 @@ const SubjectPreview = ({ subject, onShowMore }) => {
 SubjectPreview.propTypes = {
     /** Data representing 1 subject */
     subject: PropTypes.shape({
-        code: PropTypes.string.isRequired,
-        lecturer: PropTypes.string.isRequired,
-        // day: PropTypes.number,  // TODO Should be number and not english string as it is now (toy data)
-        time: PropTypes.string.isRequired,
-        credits: PropTypes.number.isRequired,
-        len: PropTypes.string.isRequired,  // TODO Number or string? ... "2+2"?
+        kod: PropTypes.string.isRequired,
+        nazev: PropTypes.string.isRequired,
+        anotace: PropTypes.string.isRequired,
 
-        // TODO Following things are not yet in toy data
-        // name: PropTypes.string.isRequired,
-        // department: PropTypes.string.isRequired,
-        // departmentCode: PropTypes.string.isRequired,
-        // examType: PropTypes.string.isRequired,
-        // annotation: PropTypes.string.isRequired,
+        kredity: PropTypes.number.isRequired,
+        rozsah: PropTypes.string.isRequired,
+        zpuszak: PropTypes.string.isRequired,
+
+        // TODO Following things are not yet handled / not in data
+        // katedra_kod: PropTypes.string.isRequired,
+        // vyucujici: PropTypes.string.isRequired,
+        // day: PropTypes.string.isRequired,
+        // time: PropTypes.string.isRequired,
     }),
-
-    /** Event callback - user clicked on subject name and wants more info */
-    onShowMore: PropTypes.func.isRequired
 };
 
 export default SubjectPreview;
@@ -86,12 +83,12 @@ export default SubjectPreview;
 const ItemFirstLine = ({subject}) => {
     return (
         // TODO Put real values here (katedra)
-        // TODO Use values extracted from subject.rozvrhy (lecturer)
+        // TODO Use values extracted from subject.rozvrhy (vyucujici)
         <Typography variant="body2" gutterBottom>
             <Typography component="span" variant="body2" color="textPrimary">
                 {subject.kod}
             </Typography>
-            {` — KSI — ${subject.lecturer}`}
+            {` — KSI — ${subject.vyucujici}`}
         </Typography>
     );
 };
@@ -132,7 +129,7 @@ const ItemCredits = ({subject}) => {
     return(
         <QuantityIndicator
             value={Number(subject.kredity)}
-            valueMax={12}  // TODO Put real values here (kredity max)
+            valueMax={maxcredits}
             label={`${subject.kredity} kr`}
             labelWidth={"7em"}
             tooltip={`${subject.kredity} kredity`}
@@ -149,7 +146,7 @@ const ItemHours = ({subject}) => {
         <QuantityIndicator
             value={Number(match ? match.groups.lenP : 0)}
             valueSecond={Number(match ? match.groups.lenC : 0)}
-            valueMax={12}  // TODO Put real values here (rozsah max)
+            valueMax={maxlength}
             label={match ? `${match.groups.lenP}+${match.groups.lenC} h` : subject.rozsah}
             labelWidth={"7em"}
             tooltip={match ?
