@@ -22,7 +22,7 @@ export default function SubjectDialog({subject}) {
     return (
         subject ? <React.Fragment>
             <Link href="#" onClick={handleClickOpen}>
-                {subject.name}
+                {subject.nazev}
             </Link>
             <Dialog
                 fullWidth
