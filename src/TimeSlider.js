@@ -14,7 +14,6 @@ const TimeSlider = ({value, onChange, defaultvalues}) => {
         <div>
             <Slider
                 value={value}
-                aria-labelledby="discrete-slider-restrict"
                 step={null}
                 valueLabelDisplay="off"
                 marks={timeMarks}
