@@ -52,7 +52,6 @@ const QueryForm = ({history}) => {
         }
         if (params.charAt(0) === '&') params = params.substr(1);
         params += '&credits=' + credits[0] + '-' +  credits[1];
-        params += '&length=' + length[0] + '-' + length[1];
         params += '&time=' + time[0] + '-' + time[1];
         params += '&totallength=' + totallength[0] + '-' + totallength[1];
         return history.push('/search?' + params);
