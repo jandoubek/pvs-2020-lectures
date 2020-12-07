@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek} from "./constants";
 
@@ -22,19 +22,17 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({subject}) => {
+const SubjectPreview = ({ subject, onShowMore }) => {
     const classes = useStyles()
 
-    // TODO Temporary hacks
-    subject.name = "Průmyslový vývoj software";
-    subject.day = 0;
-
     return (
-        <ListItem key={subject.code} className={classes.root}>
-            <ListItemText primary={<SubjectDialog subject={subject}/>}/>
+        <ListItem className={classes.root}>
+            <ListItemText primary={
+                <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.nazev}</Link>
+            } />
             <Typography component="div" variant="body2" color="textSecondary">
                 <Grid container spacing={0} justify="space-between">
-                    <Grid container item xs={12} sm={9} spacing={1} justify="space-between">
+                    <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
                         <Grid item xs={12} sm={6}>
                             <ItemFirstLine subject={subject}/>
                         </Grid>
@@ -78,19 +76,22 @@ SubjectPreview.propTypes = {
         // departmentCode: PropTypes.string.isRequired,
         // examType: PropTypes.string.isRequired,
         // annotation: PropTypes.string.isRequired,
-    })
+    }),
+
+    /** Event callback - user clicked on subject name and wants more info */
+    onShowMore: PropTypes.func.isRequired
 };
 
 export default SubjectPreview;
 
 
-// TODO Probably should move these definitions somewhere else in the future
 const ItemFirstLine = ({subject}) => {
     return (
         // TODO Put real values here (katedra)
+        // TODO Use values extracted from subject.rozvrhy (lecturer)
         <Typography variant="body2" gutterBottom>
             <Typography component="span" variant="body2" color="textPrimary">
-                {"18" + subject.code}
+                {subject.kod}
             </Typography>
             {` — KSI — ${subject.lecturer}`}
         </Typography>
@@ -100,9 +101,8 @@ const ItemFirstLine = ({subject}) => {
 
 const ItemExamType = ({subject}) => {
     return (
-        // TODO Put real values here (zkouska)
         <Box textAlign="center">
-            {"z zk"}
+            {subject.zpuszak.toLowerCase().replace(",", " ")}
         </Box>
     );
 };
@@ -110,6 +110,7 @@ const ItemExamType = ({subject}) => {
 
 const ItemTimetable = ({subject, align="left"}) => {
     return (
+        // TODO Use values extracted from subject.rozvrhy (day, time)
         <Typography variant="body2" align={align} gutterBottom>
             {`${daysInWeek[subject.day]} ${subject.time}`}
         </Typography>
@@ -118,12 +119,12 @@ const ItemTimetable = ({subject, align="left"}) => {
 
 
 const ItemAnnotation = ({subject}) => {
+    function truncateText (text, maxLen) {
+        return text.slice(0, maxLen) + (text.length > maxLen ? "..." : "")
+    }
     return (
-        // TODO Put real values here (anotace)
         <Typography variant="body2" align="justify">
-            /anotace/ Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis...
+            {truncateText(subject.anotace, 170)}
         </Typography>
     );
 };
@@ -132,12 +133,11 @@ const ItemAnnotation = ({subject}) => {
 const ItemCredits = ({subject}) => {
     return(
         <QuantityIndicator
-            // TODO Put real values here (kredity max)
-            value={Number(subject.credits)}
-            valueMax={12}
-            label={`${subject.credits} kr`}
+            value={Number(subject.kredity)}
+            valueMax={12}  // TODO Put real values here (kredity max)
+            label={`${subject.kredity} kr`}
             labelWidth={"7em"}
-            tooltip={`${subject.credits} kredity`}
+            tooltip={`${subject.kredity} kredity`}
             color="primary"
         />
     );
@@ -145,15 +145,20 @@ const ItemCredits = ({subject}) => {
 
 
 const ItemHours = ({subject}) => {
+    const match = /(?<lenP>\d+)P?\+(?<lenC>\d+)C?/g.exec(subject.rozsah)
+
     return(
         <QuantityIndicator
-            // TODO Put real values here (hodiny cvika, hodiny max)
-            value={Number(subject.len)}
-            valueSecond={2}
-            valueMax={12}
-            label={`${subject.len}+? h`}
+            value={Number(match ? match.groups.lenP : 0)}
+            valueSecond={Number(match ? match.groups.lenC : 0)}
+            valueMax={12}  // TODO Put real values here (rozsah max)
+            label={match ? `${match.groups.lenP}+${match.groups.lenC} h` : subject.rozsah}
             labelWidth={"7em"}
-            tooltip={`${subject.len}h přednášky + ?h cvičení`}
+            tooltip={match ?
+                `${Number(match.groups.lenP)}h přednášky + ${Number(match.groups.lenC)}h cvičení`
+                :
+                subject.rozsah
+            }
             color="secondary"
         />
     );
