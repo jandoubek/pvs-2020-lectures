@@ -1,6 +1,7 @@
 import React from 'react';
 import Slider from '@material-ui/core/Slider';
 import {timeMarks} from "./constants";
+import PropTypes from 'prop-types';
 
 
 
@@ -24,5 +25,10 @@ const TimeSlider = ({value, onChange, defaultvalues}) => {
         </div>
     );
 };
-//TODO add proptypes
+
+TimeSlider.propTypes = {
+    value: PropTypes.arrayOf(PropTypes.number),
+    onChange: PropTypes.func.isRequired,
+    defaultvalues: PropTypes.arrayOf(PropTypes.number)
+};
 export default TimeSlider;

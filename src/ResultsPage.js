@@ -23,7 +23,12 @@ const parseDays = (daysString) => {
 }
 
 const timeFilter = (subjects, time) => {
-    //TODO add timefilter
+    const getHour = (timeString) => {
+        let re = new RegExp("([0-9]+):");
+        let match = timeString.match(re);
+        return parseInt(match[1]);
+    }
+    return subjects.filter(subject => (getHour(subject.time)>=time[0] && (getHour(subject.time)+parseInt(subject.len))<=time[1]))
 };
 
 const ResultsPage = () => {
@@ -38,6 +43,7 @@ const ResultsPage = () => {
     subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
     subjects = subjects.filter(subject => (subject.credits >= credits[0] && subject.credits <= credits[1]));
     subjects = subjects.filter(subject => (subject.len >= length[0] && subject.len <= length[1]));
+    subjects = timeFilter(subjects, time);
     return (
         <React.Fragment>
             <ResultsBar />
