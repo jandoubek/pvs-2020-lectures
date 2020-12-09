@@ -35,11 +35,11 @@ const SubjectDialog = ({ subject, onClose }) => {
                 <Typography>{`${subject.kod} — ${subject.katedra} — ${subject.vyucujici}`}</Typography>
             </DialogTitle>
             <DialogContent dividers>
-                <LabeledTextContent label="Anotace:">{subject.anotace}</LabeledTextContent>
-                <LabeledTextContent label="Osnova:">{subject.osnova}</LabeledTextContent>
-                <LabeledTextContent label="Osnova cvičení:">{subject.osnova_cv}</LabeledTextContent>
-                <LabeledTextContent label="Požadavky:">{subject.pozadavky}</LabeledTextContent>
-                <LabeledTextContent label="Cíle:">{subject.cile}</LabeledTextContent>
+                <LabeledTextContent label="Anotace:" text={subject.anotace} />
+                <LabeledTextContent label="Osnova:" text={subject.osnova} />
+                <LabeledTextContent label="Osnova cvičení:" text={subject.osnova_cv} />
+                <LabeledTextContent label="Požadavky:" text={subject.pozadavky} />
+                <LabeledTextContent label="Cíle:" text={subject.cile} />
             </DialogContent>
             <DialogActions>
                 <Button onClick={onClose} color="primary">
@@ -74,11 +74,23 @@ SubjectDialog.propTypes = {
 export default SubjectDialog;
 
 
-const LabeledTextContent = ({ label, children }) => {
+const LabeledTextContent = ({ label, text }) => {
     return (
         <DialogContentText align="justify">
-            <Typography color="textPrimary" component="span">{label}</Typography>
-            {children.replace(/\n[\w\s]/, "").split("\n").map(s => <React.Fragment><br/>{s}</React.Fragment>)}
+            <Typography color="textPrimary" component="span">
+                {label}
+            </Typography> {
+            text ? (
+                text.includes("1.") ?  // When "1." is in text, format it as an ordered list
+                        <ol>
+                            {text.split(/\d+\./).slice(1).map(
+                                (item, i) => <li key={i}>{item}</li>)}
+                        </ol>
+                    :
+                    text
+            ) :
+                "(Neuvedeno)"
+            }
         </DialogContentText>
     );
 };
