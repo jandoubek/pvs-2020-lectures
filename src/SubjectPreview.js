@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Box from "@material-ui/core/Box";
@@ -10,16 +11,21 @@ import Checkbox from "@material-ui/core/Checkbox";
 import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek, maxcredits, maxlength} from "./constants";
+import {toggleSubject} from "./redux/actions";
 
 
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject, selected }) => {
+const SubjectPreview = ({ subject, selected, onToggleSelect }) => {
     return (
         <ListItem alignItems="flex-start" selected={selected} >
             <Box mr={1}>
-                <Checkbox color="primary" checked={selected} />
+                <Checkbox
+                    color="primary"
+                    checked={selected}
+                    onChange={onToggleSelect}
+                />
             </Box>
             <Box>
                 <ListItemText primary={<SubjectDialog subject={subject}/>}/>
@@ -73,9 +79,17 @@ SubjectPreview.propTypes = {
     }),
 
     selected: PropTypes.bool.isRequired,
+    onToggleSelect: PropTypes.func.isRequired,
 };
 
-export default SubjectPreview;
+export default connect(
+    ({selectedSubjects}, {subject}) => ({
+        selected: selectedSubjects.has(subject.predmet_id)
+    }),
+    (dispatch, {subject}) => ({
+        onToggleSelect: () => dispatch(toggleSubject(subject.predmet_id))
+    })
+)(SubjectPreview);
 
 
 const ItemFirstLine = ({subject}) => {
