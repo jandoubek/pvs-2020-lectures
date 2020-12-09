@@ -1,59 +1,55 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {makeStyles} from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek, maxcredits, maxlength} from "./constants";
 
 
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "block"  // This overrides horizontal layout of ListItem's children
-    },
-}));
-
-
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject }) => {
-    const classes = useStyles()
-
+const SubjectPreview = ({ subject, selected }) => {
     return (
-        <ListItem className={classes.root}>
-            <ListItemText primary={<SubjectDialog subject={subject}/>}/>
-            <Typography component="div" variant="body2" color="textSecondary">
-                <Grid container spacing={0} justify="space-between">
-                    <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
-                        <Grid item xs={12} sm={6}>
-                            <ItemFirstLine subject={subject}/>
+        <ListItem alignItems="flex-start" selected={selected} >
+            <Box mr={1}>
+                <Checkbox color="primary" checked={selected} />
+            </Box>
+            <Box>
+                <ListItemText primary={<SubjectDialog subject={subject}/>}/>
+                <Typography component="div" variant="body2" color="textSecondary">
+                    <Grid container spacing={0} justify="space-between">
+                        <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
+                            <Grid item xs={12} sm={6}>
+                                <ItemFirstLine subject={subject}/>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <ItemTimetable subject={subject} align="right"/>
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                <ItemAnnotation subject={subject}/>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <ItemTimetable subject={subject} align="right"/>
-                        </Grid>
-                        <Grid item xs={12} sm={12}>
-                            <ItemAnnotation subject={subject}/>
+                        <Grid container item xs={12} sm={3} spacing={1}>
+                            <Grid item xs={12}>
+                                <ItemExamType subject={subject}/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ItemCredits subject={subject} useBar/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ItemHours subject={subject} useBar/>
+                            </Grid>
                         </Grid>
                     </Grid>
-                    <Grid container item xs={12} sm={3} spacing={1}>
-                        <Grid item xs={12}>
-                            <ItemExamType subject={subject}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ItemCredits subject={subject} useBar/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ItemHours subject={subject} useBar/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Typography>
+                </Typography>
+            </Box>
         </ListItem>
     );
 };
@@ -75,6 +71,8 @@ SubjectPreview.propTypes = {
         // day: PropTypes.string.isRequired,
         // time: PropTypes.string.isRequired,
     }),
+
+    selected: PropTypes.bool.isRequired,
 };
 
 export default SubjectPreview;
