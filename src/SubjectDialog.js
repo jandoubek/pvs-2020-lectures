@@ -68,7 +68,7 @@ SubjectDialog.propTypes = {
     }).isRequired,
 
     /** Event callback - user wants to close the dialog */
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func,
 };
 
 export default SubjectDialog;
