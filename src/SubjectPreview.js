@@ -9,7 +9,7 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
 import QuantityIndicator from "./QuantityIndicator";
-import {daysInWeek} from "./constants";
+import {daysInWeek, maxcredits, maxlength} from "./constants";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -25,10 +25,6 @@ const useStyles = makeStyles((theme) => ({
 const SubjectPreview = ({ subject, onShowMore }) => {
     const classes = useStyles()
 
-    // TODO Temporary hacks
-    subject.name = "Průmyslový vývoj software";
-    subject.day = 0;
-
     return (
         <ListItem className={classes.root}>
             <ListItemText primary={
@@ -36,7 +32,7 @@ const SubjectPreview = ({ subject, onShowMore }) => {
             } />
             <Typography component="div" variant="body2" color="textSecondary">
                 <Grid container spacing={0} justify="space-between">
-                    <Grid container item xs={12} sm={9} spacing={1} justify="space-between">
+                    <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
                         <Grid item xs={12} sm={6}>
                             <ItemFirstLine subject={subject}/>
                         </Grid>
@@ -67,23 +63,23 @@ const SubjectPreview = ({ subject, onShowMore }) => {
 SubjectPreview.propTypes = {
     /** Data representing 1 subject */
     subject: PropTypes.shape({
-        code: PropTypes.string.isRequired,
-        lecturer: PropTypes.string.isRequired,
-        // day: PropTypes.number,  // TODO Should be number and not english string as it is now (toy data)
-        time: PropTypes.string.isRequired,
-        credits: PropTypes.number.isRequired,
-        len: PropTypes.string.isRequired,  // TODO Number or string? ... "2+2"?
+        kod: PropTypes.string,
+        nazev: PropTypes.string,
+        anotace: PropTypes.string,
 
-        // TODO Following things are not yet in toy data
-        // name: PropTypes.string.isRequired,
-        // department: PropTypes.string.isRequired,
-        // departmentCode: PropTypes.string.isRequired,
-        // examType: PropTypes.string.isRequired,
-        // annotation: PropTypes.string.isRequired,
+        kredity: PropTypes.number,
+        rozsah: PropTypes.string,
+        zpuszak: PropTypes.string,
+
+        // TODO Following things are not yet handled / not in data
+        // katedra_kod: PropTypes.string,
+        // vyucujici: PropTypes.string,
+        // day: PropTypes.string,
+        // time: PropTypes.string,
     }),
 
     /** Event callback - user clicked on subject name and wants more info */
-    onShowMore: PropTypes.func.isRequired
+    onShowMore: PropTypes.func,
 };
 
 export default SubjectPreview;
@@ -92,11 +88,12 @@ export default SubjectPreview;
 const ItemFirstLine = ({subject}) => {
     return (
         // TODO Put real values here (katedra)
-        <Typography variant="body2" gutterBottom>
+        // TODO Use values extracted from subject.rozvrhy (vyucujici)
+        <Typography variant="body2">
             <Typography component="span" variant="body2" color="textPrimary">
-                {"18" + subject.code}
+                {subject.kod}
             </Typography>
-            {` — KSI — ${subject.lecturer}`}
+            {` — KSI — ${subject.vyucujici}`}
         </Typography>
     );
 };
@@ -104,9 +101,8 @@ const ItemFirstLine = ({subject}) => {
 
 const ItemExamType = ({subject}) => {
     return (
-        // TODO Put real values here (zkouska)
         <Box textAlign="center">
-            {"z zk"}
+            {subject.zpuszak.toLowerCase().replace(",", " ")}
         </Box>
     );
 };
@@ -114,7 +110,8 @@ const ItemExamType = ({subject}) => {
 
 const ItemTimetable = ({subject, align="left"}) => {
     return (
-        <Typography variant="body2" align={align} gutterBottom>
+        // TODO Use values extracted from subject.rozvrhy (day, time)
+        <Typography variant="body2" align={align}>
             {`${daysInWeek[subject.day]} ${subject.time}`}
         </Typography>
     );
@@ -122,12 +119,12 @@ const ItemTimetable = ({subject, align="left"}) => {
 
 
 const ItemAnnotation = ({subject}) => {
+    function truncateText (text, maxLen) {
+        return text.slice(0, maxLen) + (text.length > maxLen ? "..." : "")
+    }
     return (
-        // TODO Put real values here (anotace)
         <Typography variant="body2" align="justify">
-            /anotace/ Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-            sed do eiusmod tempor incididunt ut labore et dolore magna
-            aliqua. Ut enim ad minim veniam, quis...
+            {truncateText(subject.anotace, 170)}
         </Typography>
     );
 };
@@ -136,12 +133,11 @@ const ItemAnnotation = ({subject}) => {
 const ItemCredits = ({subject}) => {
     return(
         <QuantityIndicator
-            // TODO Put real values here (kredity max)
-            value={Number(subject.credits)}
-            valueMax={12}
-            label={`${subject.credits} kr`}
+            value={Number(subject.kredity)}
+            valueMax={maxcredits}
+            label={`${subject.kredity} kr`}
             labelWidth={"7em"}
-            tooltip={`${subject.credits} kredity`}
+            tooltip={`${subject.kredity} kredity`}
             color="primary"
         />
     );
@@ -149,15 +145,20 @@ const ItemCredits = ({subject}) => {
 
 
 const ItemHours = ({subject}) => {
+    const match = /(?<lenP>\d+)P?\+(?<lenC>\d+)C?/g.exec(subject.rozsah)
+
     return(
         <QuantityIndicator
-            // TODO Put real values here (hodiny cvika, hodiny max)
-            value={Number(subject.len)}
-            valueSecond={2}
-            valueMax={12}
-            label={`${subject.len}+? h`}
+            value={Number(match ? match.groups.lenP : 0)}
+            valueSecond={Number(match ? match.groups.lenC : 0)}
+            valueMax={maxlength}
+            label={match ? `${match.groups.lenP}+${match.groups.lenC} h` : subject.rozsah}
             labelWidth={"7em"}
-            tooltip={`${subject.len}h přednášky + ?h cvičení`}
+            tooltip={match ?
+                `${Number(match.groups.lenP)}h přednášky + ${Number(match.groups.lenC)}h cvičení`
+                :
+                subject.rozsah
+            }
             color="secondary"
         />
     );

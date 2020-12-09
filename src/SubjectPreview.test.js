@@ -3,26 +3,37 @@ import '@testing-library/jest-dom'
 import SubjectPreview from "./SubjectPreview";
 
 
-/** Assigned to Jan */
 test('SubjectPreview renders code', () => {
-  // TODO Add more things here as soon as SubjectPreview actually uses the data
-  const testSubject = {
-    code: "PVS",
-    lecturer: "Doubek",
+    const testSubject = {
+        kod: "PVS",
+        nazev: "Průmyslový vývoj software",
+        anotace: "Super anotace.",
 
-    time: "11:30",
-    day: 0,
-    credits: 2,
-    len: "2",
-  }
-  render(<SubjectPreview subject={testSubject} />);
+        kredity: 3,
+        rozsah: "4+2",
+        zpuszak: "Z,ZK",
 
-  let linkElement = screen.getByText(/PVS/i);
-  expect(linkElement).toBeVisible();
+        // vyucujici: "Doubek",
+        // time: "11:30",
+        // day: 0,
+    }
+    render(<SubjectPreview subject={testSubject} />);
 
-  linkElement = screen.getByText(/Doubek/i);
-  expect(linkElement).toBeVisible();
+    let element = screen.getByText(testSubject.kod);
+    expect(element).toBeVisible();
 
-  linkElement = screen.getByText(/pondělí/i);
-  expect(linkElement).toBeVisible();
+    element = screen.getByText(testSubject.nazev);
+    expect(element).toBeVisible();
+
+    element = screen.getByText(testSubject.anotace);
+    expect(element).toBeVisible();
+
+    element = screen.getByText("3 kr");
+    expect(element).toBeVisible();
+
+    element = screen.getByText("4+2 h");
+    expect(element).toBeVisible();
+
+    element = screen.getByText("z zk");
+    expect(element).toBeVisible();
 });
