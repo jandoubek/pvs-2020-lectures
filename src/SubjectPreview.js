@@ -28,7 +28,7 @@ const SubjectPreview = ({ subject, onShowMore }) => {
     return (
         <ListItem className={classes.root}>
             <ListItemText primary={
-                <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.name}</Link>
+                <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.nazev}</Link>
             } />
             <Typography component="div" variant="body2" color="textSecondary">
                 <Grid container spacing={0} justify="space-between">
