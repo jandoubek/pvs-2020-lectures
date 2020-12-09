@@ -18,8 +18,8 @@ import Typography from "@material-ui/core/Typography";
  */
 const SubjectDialog = ({ subject, onClose }) => {
     // TODO Temporary hacks
-    subject.katedra = "Katedra bludiček a permoníků"
-    subject.vyucujici = subject.rozvrhy[0] && subject.rozvrhy[0][0]["vyucujici"]
+    subject.katedra = "Katedra bludiček a permoníků";
+    subject.vyucujici = "Herbert";
 
     return (
         <Dialog
@@ -52,8 +52,20 @@ const SubjectDialog = ({ subject, onClose }) => {
 
 SubjectDialog.propTypes = {
     /** Data representing 1 subject */
-    // subject: PropTypes.shape({  // TODO
-    // }).isRequired,
+    subject: PropTypes.shape({
+        kod: PropTypes.string,
+        nazev: PropTypes.string,
+
+        anotace: PropTypes.string,
+        osnova: PropTypes.string,
+        osnova_cv: PropTypes.string,
+        pozadavky: PropTypes.string,
+        cile: PropTypes.string,
+
+        // TODO Following things are not yet handled / not in data
+        // katedra: PropTypes.string,
+        // vyucujici: PropTypes.string,
+    }).isRequired,
 
     /** Event callback - user wants to close the dialog */
     onClose: PropTypes.func.isRequired
@@ -69,4 +81,4 @@ const LabeledTextContent = ({ label, children }) => {
             {children.replace(/\n[\w\s]/, "").split("\n").map(s => <React.Fragment><br/>{s}</React.Fragment>)}
         </DialogContentText>
     );
-}
+};
