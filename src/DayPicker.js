@@ -7,12 +7,13 @@ import {Box} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        width: "420px",
         display: "flex",
-        justifyContent: "space-between"
+        gap: "8px",
+        justifyContent: "flex-start",
+        flexWrap: "wrap"
     },
     chip: {
-        width: "80px"
+        width: "6em"
     }
 }));
 

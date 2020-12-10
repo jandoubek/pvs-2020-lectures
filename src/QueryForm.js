@@ -53,7 +53,7 @@ const QueryForm = ({history}) => {
     };
 
     return (
-        <Box component="form" onSubmit={handleSubmit}>
+        <Box width="100%" component="form" onSubmit={handleSubmit}>
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>

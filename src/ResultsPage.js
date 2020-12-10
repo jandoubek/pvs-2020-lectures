@@ -1,6 +1,6 @@
 import React from 'react';
 import ResultsBar from "./ResultsBar";
-import {Box} from "@material-ui/core";
+import {Container} from "@material-ui/core";
 import ResultsList from "./ResultsList";
 import {useLocation} from "react-router-dom";
 import NoResults from "./NoResults";
@@ -47,13 +47,13 @@ const ResultsPage = ({subjects}) => {
     return (
         <React.Fragment>
             <ResultsBar />
-            <Box marginLeft="175px" width="620px">
+            <Container fixed maxWidth="md">
                 {subjects.length > 0 ?
                     <ResultsList subjects={subjects}/>
                     :
                     <NoResults query={includes}/>
                 }
-            </Box>
+            </Container>
         </React.Fragment>
     );
 };

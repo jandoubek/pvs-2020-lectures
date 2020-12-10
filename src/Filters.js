@@ -9,12 +9,7 @@ import Accordion from "@material-ui/core/Accordion";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
-    divider: {
-        height: 28,
-        margin: 4,
-    },
     filters: {
-        width: "600px",
         marginTop: "15px"
     },
     filtersSummary: {
