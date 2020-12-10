@@ -1,6 +1,6 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {connect} from "react-redux";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Link from "@material-ui/core/Link";
@@ -10,14 +10,14 @@ import Typography from "@material-ui/core/Typography";
 import Checkbox from "@material-ui/core/Checkbox";
 
 import QuantityIndicator from "./QuantityIndicator";
-import {daysInWeek, maxcredits, maxlength} from "./constants";
-import {toggleSubject} from "./redux/actions";
+import { daysInWeek, maxcredits, maxlength } from "./constants";
+import { toggleSubject } from "./redux/actions";
 
 
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject, onShowMore, selected, onToggleSelect }) => {
+export const SubjectPreview = ({ subject, onShowMore, selected = false, onToggleSelect }) => {
     return (
         <ListItem alignItems="flex-start" selected={selected} >
             <Box mr={1}>
@@ -82,7 +82,7 @@ SubjectPreview.propTypes = {
     /** Event callback - user clicked on subject name and wants more info */
     onShowMore: PropTypes.func,
     /** Render the subject as selected (with highlight) */
-    selected: PropTypes.bool.isRequired,
+    selected: PropTypes.bool,
     /** Event callback - user wants to de/select this subject */
     onToggleSelect: PropTypes.func,
 };
