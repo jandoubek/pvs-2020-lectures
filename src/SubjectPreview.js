@@ -27,7 +27,7 @@ export const SubjectPreview = ({ subject, onShowMore, selected = false, onToggle
                     onChange={onToggleSelect}
                 />
             </Box>
-            <Box>
+            <Box pt={"5px"}>
                 <ListItemText primary={
                     <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.nazev}</Link>
                 } />
