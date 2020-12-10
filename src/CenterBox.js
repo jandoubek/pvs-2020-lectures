@@ -1,18 +1,14 @@
 import React from 'react';
 import Box from "@material-ui/core/Box";
+import Container from "@material-ui/core/Container";
 
 const CenterBox = ({children}) => {
     return (
-        <Box
-            display="flex"
-            justifyContent="center"
-            width="100%"
-            marginTop="250px"
-        >
-            <Box>
+        <Container fixed maxWidth="sm">
+            <Box marginTop="30vh">
                 {children}
             </Box>
-        </Box>
+        </Container>
     );
 };
 
