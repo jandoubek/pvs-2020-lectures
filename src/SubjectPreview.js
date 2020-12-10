@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import {makeStyles} from "@material-ui/core/styles";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
+import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 
-import SubjectDialog from "./SubjectDialog";
 import QuantityIndicator from "./QuantityIndicator";
 import {daysInWeek, maxcredits, maxlength} from "./constants";
 
@@ -22,12 +22,14 @@ const useStyles = makeStyles((theme) => ({
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject }) => {
+const SubjectPreview = ({ subject, onShowMore }) => {
     const classes = useStyles()
 
     return (
         <ListItem className={classes.root}>
-            <ListItemText primary={<SubjectDialog subject={subject}/>}/>
+            <ListItemText primary={
+                <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.nazev}</Link>
+            } />
             <Typography component="div" variant="body2" color="textSecondary">
                 <Grid container spacing={0} justify="space-between">
                     <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
@@ -61,20 +63,23 @@ const SubjectPreview = ({ subject }) => {
 SubjectPreview.propTypes = {
     /** Data representing 1 subject */
     subject: PropTypes.shape({
-        kod: PropTypes.string.isRequired,
-        nazev: PropTypes.string.isRequired,
-        anotace: PropTypes.string.isRequired,
+        kod: PropTypes.string,
+        nazev: PropTypes.string,
+        anotace: PropTypes.string,
 
-        kredity: PropTypes.number.isRequired,
-        rozsah: PropTypes.string.isRequired,
-        zpuszak: PropTypes.string.isRequired,
+        kredity: PropTypes.number,
+        rozsah: PropTypes.string,
+        zpuszak: PropTypes.string,
 
         // TODO Following things are not yet handled / not in data
-        // katedra_kod: PropTypes.string.isRequired,
-        // vyucujici: PropTypes.string.isRequired,
-        // day: PropTypes.string.isRequired,
-        // time: PropTypes.string.isRequired,
+        // katedra_kod: PropTypes.string,
+        // vyucujici: PropTypes.string,
+        // day: PropTypes.string,
+        // time: PropTypes.string,
     }),
+
+    /** Event callback - user clicked on subject name and wants more info */
+    onShowMore: PropTypes.func,
 };
 
 export default SubjectPreview;
