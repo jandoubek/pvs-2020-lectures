@@ -17,7 +17,7 @@ import {toggleSubject} from "./redux/actions";
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject, selected, onToggleSelect }) => {
+const SubjectPreview = ({ subject, onShowMore, selected, onToggleSelect }) => {
     return (
         <ListItem alignItems="flex-start" selected={selected} >
             <Box mr={1}>
