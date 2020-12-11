@@ -1,61 +1,63 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import {makeStyles} from "@material-ui/core/styles";
+import React from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import Link from "@material-ui/core/Link";
 import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
+import Checkbox from "@material-ui/core/Checkbox";
 
 import QuantityIndicator from "./QuantityIndicator";
-import {daysInWeek, maxcredits, maxlength} from "./constants";
-
-
-const useStyles = makeStyles((theme) => ({
-    root: {
-        display: "block"  // This overrides horizontal layout of ListItem's children
-    },
-}));
+import { daysInWeek, maxcredits, maxlength } from "./constants";
+import { toggleSubject } from "./redux/actions";
 
 
 /**
  * Displays brief information about the subject organized in a small grid.
  */
-const SubjectPreview = ({ subject, onShowMore }) => {
-    const classes = useStyles()
-
+export const SubjectPreview = ({ subject, onShowMore, selected = false, onToggleSelect }) => {
     return (
-        <ListItem className={classes.root}>
-            <ListItemText primary={
-                <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.nazev}</Link>
-            } />
-            <Typography component="div" variant="body2" color="textSecondary">
-                <Grid container spacing={0} justify="space-between">
-                    <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
-                        <Grid item xs={12} sm={6}>
-                            <ItemFirstLine subject={subject}/>
+        <ListItem alignItems="flex-start" selected={selected} >
+            <Box mr={1}>
+                <Checkbox
+                    color="primary"
+                    checked={selected}
+                    onChange={onToggleSelect}
+                />
+            </Box>
+            <Box pt={"5px"}>
+                <ListItemText primary={
+                    <Link href="#" onClick={(e) => onShowMore(e, subject)}>{subject.nazev}</Link>
+                } />
+                <Typography component="div" variant="body2" color="textSecondary">
+                    <Grid container spacing={0} justify="space-between">
+                        <Grid container item xs={12} sm={9} spacing={1} alignContent="flex-start">
+                            <Grid item xs={12} sm={6}>
+                                <ItemFirstLine subject={subject}/>
+                            </Grid>
+                            <Grid item xs={12} sm={6}>
+                                <ItemTimetable subject={subject} align="right"/>
+                            </Grid>
+                            <Grid item xs={12} sm={12}>
+                                <ItemAnnotation subject={subject}/>
+                            </Grid>
                         </Grid>
-                        <Grid item xs={12} sm={6}>
-                            <ItemTimetable subject={subject} align="right"/>
-                        </Grid>
-                        <Grid item xs={12} sm={12}>
-                            <ItemAnnotation subject={subject}/>
+                        <Grid container item xs={12} sm={3} spacing={1}>
+                            <Grid item xs={12}>
+                                <ItemExamType subject={subject}/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ItemCredits subject={subject} useBar/>
+                            </Grid>
+                            <Grid item xs={12}>
+                                <ItemHours subject={subject} useBar/>
+                            </Grid>
                         </Grid>
                     </Grid>
-                    <Grid container item xs={12} sm={3} spacing={1}>
-                        <Grid item xs={12}>
-                            <ItemExamType subject={subject}/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ItemCredits subject={subject} useBar/>
-                        </Grid>
-                        <Grid item xs={12}>
-                            <ItemHours subject={subject} useBar/>
-                        </Grid>
-                    </Grid>
-                </Grid>
-            </Typography>
+                </Typography>
+            </Box>
         </ListItem>
     );
 };
@@ -77,12 +79,22 @@ SubjectPreview.propTypes = {
         // day: PropTypes.string,
         // time: PropTypes.string,
     }),
-
     /** Event callback - user clicked on subject name and wants more info */
     onShowMore: PropTypes.func,
+    /** Render the subject as selected (with highlight) */
+    selected: PropTypes.bool,
+    /** Event callback - user wants to de/select this subject */
+    onToggleSelect: PropTypes.func,
 };
 
-export default SubjectPreview;
+export default connect(
+    ({selectedSubjects}, {subject}) => ({
+        selected: selectedSubjects.has(subject.predmet_id)
+    }),
+    (dispatch, {subject}) => ({
+        onToggleSelect: () => dispatch(toggleSubject(subject.predmet_id))
+    })
+)(SubjectPreview);
 
 
 const ItemFirstLine = ({subject}) => {
