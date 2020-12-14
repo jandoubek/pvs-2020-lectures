@@ -2,6 +2,7 @@ import React, {useCallback} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSubjects} from "./hooks";
 import DeleteIcon from '@material-ui/icons/Delete';
+import FileCopy from '@material-ui/icons/FileCopy';
 import { Button } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import {DataGrid} from "@material-ui/data-grid";
@@ -22,7 +23,8 @@ const sortModel = [
 ];
 
 const addSubjectIDs = subjectsFromJSON => {
-    return subjectsFromJSON.map((subject, index) => { return {...subject, id: index} })
+    return subjectsFromJSON.map((subject, index) => { return {...subject, id: index,
+        button: () => {return(<Button>subject.code</Button>)} } })
 }
 
 const updateTotalRow = subjects => {
@@ -69,7 +71,15 @@ const ChosenSubjects = () => {
         >
             Odstranit vybrané
         </Button>
-        <div style={{ height: 110, width: '100%' }}>
+        <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<FileCopy />}
+            onClick={() => {navigator.clipboard.writeText(selection.map(subjectID => subjectRows[subjectID].code).toString())}}
+        >
+            Exportovat vybrané
+        </Button>
+        <div style={{ height: 120, width: '100%' }}>
             <DataGrid
                 columns={subjectColumns}
                 rows= {totalRow}
