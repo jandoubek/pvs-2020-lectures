@@ -4,8 +4,8 @@ import {Box} from "@material-ui/core";
 import ResultsList from "./ResultsList";
 import {useLocation} from "react-router-dom";
 import NoResults from "./NoResults";
-import {useSubjects} from "./hooks";
 import {parseCredits, parseLength} from "./utility.js"
+import { connect } from "react-redux";
 
 const useQuery = () => {
     return new URLSearchParams(useLocation().search);
@@ -22,17 +22,28 @@ const parseDays = (daysString) => {
     return [...daysString].map(letter => parseInt(letter));
 }
 
-const ResultsPage = () => {
+const ResultsPage = ({subjects}) => {
     let queryRoute = useQuery();
     const includes = queryRoute.get("includes");
     const days = parseDays(queryRoute.get("days"));
     const credits = parseCredits(queryRoute.get("credits"));
-    const length = parseLength(queryRoute.get("length"))
-    let subjects = useSubjects();
+    const totallength = parseLength(queryRoute.get("totallength"));
+
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
-    subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
-    subjects = subjects.filter(subject => (subject.credits >= credits[0] && subject.credits <= credits[1]));
-    subjects = subjects.filter(subject => (subject.len >= length[0] && subject.len <= length[1]));
+
+    // TODO Needs manual fixing
+    // subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
+    subjects = subjects.filter(subject => 0 <= days.length);  // Avoiding warnings, delete this
+
+    subjects = subjects.filter(subject => (subject.kredity >= credits[0] && subject.kredity <= credits[1]));
+
+    // TODO Needs manual fixing
+    // subjects = subjects.filter(subject => (subject.total_len >= totallength[0] && subject.total_len <= totallength[1]));
+    subjects = subjects.filter(subject => 0 <= totallength.length);  // Avoiding warnings, delete this
+
+    // TODO Temporary hack - only show first 20 results instead of all (500+)
+    subjects = subjects.slice(0, 20);
+
     return (
         <React.Fragment>
             <ResultsBar />
@@ -47,4 +58,6 @@ const ResultsPage = () => {
     );
 };
 
-export default ResultsPage;
+export default connect(({subjects}) => ({
+    subjects
+}))(ResultsPage);
