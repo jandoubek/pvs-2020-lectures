@@ -2,16 +2,15 @@ import React from "react";
 import ResultsPage from "./ResultsPage";
 import SearchPage from "./SearchPage";
 import {
-    BrowserRouter as Router,
     Switch,
-    Route,
+    Route, HashRouter,
 } from "react-router-dom";
 import TopBar from "./TopBar";
 import ChosenSubjects from "./ChosenSubjects";
 
 function App() {
     return (
-        <Router>
+        <HashRouter basename='/'>
             <TopBar>Hello!</TopBar>
             <Switch>
                 <Route path="/search">
@@ -24,7 +23,7 @@ function App() {
                     <SearchPage />
                 </Route>
             </Switch>
-        </Router>
+        </HashRouter>
     );
 }
 
