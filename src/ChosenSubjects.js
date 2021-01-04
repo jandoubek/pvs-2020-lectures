@@ -1,7 +1,12 @@
-
-import React from 'react';
+import React, {useCallback} from 'react';
 import {makeStyles} from "@material-ui/core/styles";
 import {useSubjects} from "./hooks";
+import DeleteIcon from '@material-ui/icons/Delete';
+import FileCopy from '@material-ui/icons/FileCopy';
+import { Button } from '@material-ui/core';
+import { Paper } from '@material-ui/core';
+import {DataGrid} from "@material-ui/data-grid";
+import {subjectColumns} from "./ChosenSubjectsColumns"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -9,18 +14,79 @@ const useStyles = makeStyles((theme) => ({
     }
 }));
 
+// vychozi razeni
+const sortModel = [
+    {
+        field: 'code',
+        sort: 'asc',
+    },
+];
+
+const addSubjectIDs = subjectsFromJSON => {
+    return subjectsFromJSON.map((subject, index) => { return {...subject, id: index,
+        button: () => {return(<Button>subject.code</Button>)} } })
+}
+
+const updateTotalRow = subjects => {
+    let totalCredits = subjects.reduce((total, nextsubject) => {return total + Number(nextsubject.credits)}, 0)
+    let totalLength = subjects.reduce((total, nextsubject) => {return total + Number(nextsubject.len)}, 0)
+    return [{id:0, credits:totalCredits, len:totalLength}]
+}
+
 /** Assigned to Hynek */
 // TODO Vypadá to jako job pro https://material-ui.com/components/tables/
 // TODO Tady je example jak dostat data: {subjects[0]["lecturer"]}
 const ChosenSubjects = () => {
-    const subjects = useSubjects();
+    // viz https://reactjs.org/docs/hooks-state.html
+    const [selection, setSelection] = React.useState([]);
+    const [subjectRows, setSubjectRows] = React.useState(addSubjectIDs(useSubjects()));
+    const [totalRow, setTotalRow] = React.useState(updateTotalRow(subjectRows));
+
     const classes = useStyles();
     return (
-        <div className={classes.root}>
-            Zde bude vyvíjen seznam vybraných předmětů, kam se umístí až bude potřeba ještě rozmyslíme.
-            Rozhodně to nebude takto přes one-way button "Vybrané předměty".
-            První předmět vyučuje: {subjects[0]["lecturer"]}
+        <Paper>
+        <Paper style={{ height: 550, width: '100%' }}>
+            <DataGrid
+                sortModel={sortModel}
+                columns={subjectColumns}
+                rows={subjectRows}
+                checkboxSelection={true}
+                onSelectionChange={(newSelection) => {
+                    setSelection(newSelection.rowIds);
+                }}
+                hideFooter={true}
+            />
+        </Paper>
+        <Button
+            variant="outlined"
+            color="secondary"
+            startIcon={<DeleteIcon />}
+            onClick={() => {
+                setSubjectRows(
+                    subjectRows.filter(row => !selection.includes(row.id.toString())));
+                setSelection([]);
+                setTotalRow(updateTotalRow(subjectRows));
+                }
+            }
+        >
+            Odstranit vybrané
+        </Button>
+        <Button
+            variant="outlined"
+            color="primary"
+            startIcon={<FileCopy />}
+            onClick={() => {navigator.clipboard.writeText(selection.map(subjectID => subjectRows[subjectID].code).toString())}}
+        >
+            Exportovat vybrané
+        </Button>
+        <div style={{ height: 120, width: '100%' }}>
+            <DataGrid
+                columns={subjectColumns}
+                rows= {totalRow}
+                hideFooter={true}
+            />
         </div>
+        </Paper>
     );
 };
 
