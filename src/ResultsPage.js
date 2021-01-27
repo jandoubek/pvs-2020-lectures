@@ -28,14 +28,10 @@ const timeFilter = (subjects, time) => {
         return parseInt(timeString.slice(1,3));
     }
     const isInCorrectTime = (subject, time) => {
-        let timetable = subject.rozvrhy;
-        //timetable is array of arrays of structs, inner arrays are of size 1 and therefore unnecessary
-        timetable = timetable.map(entry => entry[0]); // unpacking the inner arrays
-        let since = timetable.map(timepiece => getTimeFromTimedate(timepiece.od));
-        let upto = timetable.map(timepiece => getTimeFromTimedate(timepiece.do));
-        let correctstart = since.map(entry => entry >= time[0]);
-        let correctend = upto.map(entry => entry <= time[1]);
-        return correctstart.includes(true) && correctend.includes(true)
+        let alloptions = subject.rozvrhy;
+        let correctstart = alloptions.map(option => option.map(timepiece => getTimeFromTimedate(timepiece.od) >= time[0]));
+        let correctend = alloptions.map(option => option.map(timepiece => getTimeFromTimedate(timepiece.do) <= time[1]))
+        return (correctstart.map(arr=>arr.includes(true)).includes(true)) && (correctend.map(arr=>arr.includes(true)).includes(true))
     }
     return subjects.filter(subject => isInCorrectTime(subject,time))
 };
@@ -67,8 +63,8 @@ const ResultsPage = ({subjects}) => {
 
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
 
-
-    subjects = dayFilter(subjects, days);
+    //TODO: NEEDS FIXING, ACTUALLY ONLY FIRST ENTRY IN POSSIBLE "ZAPIS PREDMETU" IS CONSIDERED
+    //subjects = dayFilter(subjects, days);
 
 
     subjects = subjects.filter(subject => (subject.kredity >= credits[0] && subject.kredity <= credits[1]));
