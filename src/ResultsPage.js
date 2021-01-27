@@ -52,7 +52,7 @@ const ResultsPage = ({subjects}) => {
     subjects = subjects.filter(subject => 0 <= totallength.length);  // Avoiding warnings, delete this
 
     //TODO: needs fixing
-    subjects = timeFilter(subjects, time);
+    //subjects = timeFilter(subjects, time);
 
     // TODO Temporary hack - only show first 20 results instead of all (500+)
     subjects = subjects.slice(0, 20);
