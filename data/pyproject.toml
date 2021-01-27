@@ -1,0 +1,10 @@
+[tool.poetry]
+name = "pvs-2020-lectures-data"
+version = "0.1.0"
+description = "Data parsing for pvs lectures."
+authors = ["Jan Doubek <mr.jan.doubek@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+aiohttp = "^3.7.3"
+lxml = "^4.6.1"
