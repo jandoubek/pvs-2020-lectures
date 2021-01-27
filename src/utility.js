@@ -1,4 +1,4 @@
-import {maxcredits, maxlength} from "./constants";
+import {maxcredits, maxlength, timeMarks} from "./constants";
 
 const twoElementParser = (parsedString, maxvalue) => {
     if (!parsedString) return [1, maxvalue];
@@ -15,4 +15,14 @@ const parseLength = (lengthString) => {
     return twoElementParser(lengthString, maxlength)
 }
 
-export {parseCredits, parseLength}
+//TODO refactor into twoElementParser
+const parseTime = (timeString) => {
+    if (!timeString) {
+        const minvalue = timeMarks[0].value;
+        const maxvalue = timeMarks[timeMarks.length - 1].value;
+        return [minvalue, maxvalue];
+    }
+    return twoElementParser(timeString, null);
+};
+
+export {parseCredits, parseLength, parseTime}

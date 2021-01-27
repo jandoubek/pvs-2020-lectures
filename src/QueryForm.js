@@ -5,10 +5,11 @@ import SearchBar from "./SearchBar";
 import DayPicker from "./DayPicker";
 import {useQuery} from "./hooks";
 import Filters from "./Filters";
-import {daysInWeek, maxcredits, maxlength} from "./constants";
+import {daysInWeek, maxcredits, maxlength, timeMarks} from "./constants";
 import CreditsSlider from "./CreditsSlider";
-import {parseCredits, parseLength} from "./utility.js"
+import {parseCredits, parseLength, parseTime} from "./utility.js"
 import LengthSlider from "./LengthSlider";
+import TimeSlider from "./TimeSlider";
 
 
 const daysToInfo = (days) => {
@@ -37,6 +38,9 @@ const QueryForm = ({history}) => {
 
     const [totallength, setTotalLength] = useState(parseLength(queryRoute.get("totallength")));
 
+    const [time, setTime] = useState(parseTime(queryRoute.get("time")));
+    const defaulttime = [timeMarks[0].value, timeMarks[timeMarks.length - 1].value];
+
     const handleSubmit = (e) => {
         e.preventDefault();
         let params = '';
@@ -48,6 +52,7 @@ const QueryForm = ({history}) => {
         }
         if (params.charAt(0) === '&') params = params.substr(1);
         params += '&credits=' + credits[0] + '-' +  credits[1];
+        params += '&time=' + time[0] + '-' + time[1];
         params += '&totallength=' + totallength[0] + '-' + totallength[1];
         return history.push('/search?' + params);
     };
@@ -57,6 +62,7 @@ const QueryForm = ({history}) => {
             <SearchBar value={query} onChange={setQuery}/>
             <Filters info={days.length > 0 ? "Předměty " + daysToInfo(days) : "Filtry"}>
                 <DayPicker value={days} onChange={setDays}/>
+                <TimeSlider onChange={setTime} value={time} defaultvalues={defaulttime}/>
                 <CreditsSlider onChange={setCredits} value={credits} maxvalue={maxcredits}/>
                 <LengthSlider value={totallength} onChange={setTotalLength} maxvalue={maxlength}/>
             </Filters>
