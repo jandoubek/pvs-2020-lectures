@@ -43,11 +43,14 @@ const dayFilter = (subjects, days) => {
     }
 
     const isInCorrectDay = (subject, wanteddays) => {
-        let timetable = subject.rozvrhy;
-        timetable = timetable.map(entry => entry[0]);
-        let subjectdays = timetable.map(timepiece => getDayFromTimedate(timepiece.od));
-        let correctday = subjectdays.map(entry => wanteddays.includes(entry));
-        return correctday.includes(true);
+        let alloptions = subject.rozvrhy;
+        for (let timetable of alloptions){
+            let subjectdays = timetable.map(timepiece => getDayFromTimedate(timepiece.od));
+            let correctday = subjectdays.map(entry => wanteddays.includes(entry));
+            if (correctday.includes(true))
+                return true;
+        }
+        return false;
     }
 
     return days.length > 0 ? subjects.filter(subject => isInCorrectDay(subject, days)) : subjects;
@@ -63,8 +66,7 @@ const ResultsPage = ({subjects}) => {
 
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
 
-    //TODO: NEEDS FIXING, ACTUALLY ONLY FIRST ENTRY IN POSSIBLE "ZAPIS PREDMETU" IS CONSIDERED
-    //subjects = dayFilter(subjects, days);
+    subjects = dayFilter(subjects, days);
 
 
     subjects = subjects.filter(subject => (subject.kredity >= credits[0] && subject.kredity <= credits[1]));
