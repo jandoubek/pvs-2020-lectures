@@ -62,4 +62,8 @@ export const timeMarks = [
         value: 18,
         label: '18:30',
     },
+    {
+        value: 19,
+        label: '19:30',
+    },
 ];

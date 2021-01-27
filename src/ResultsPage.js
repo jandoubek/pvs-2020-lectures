@@ -23,12 +23,21 @@ const parseDays = (daysString) => {
 }
 
 const timeFilter = (subjects, time) => {
-    const getHour = (timeString) => {
-        let re = new RegExp("([0-9]+):");
-        let match = timeString.match(re);
-        return parseInt(match[1]);
+    const getTimeFromTimedate = (time) => {
+        let timeString = String(time);
+        return parseInt(timeString.slice(1,3));
     }
-    return subjects.filter(subject => (getHour(subject.time)>=time[0] && (getHour(subject.time)+parseInt(subject.len))<=time[1]))
+    const isInCorrectTime = (subject, time) => {
+        let timetable = subject.rozvrhy;
+        //timetable is array of arrays of structs, inner arrays are of size 1 and therefore unnecessary
+        timetable = timetable.map(entry => entry[0]); // unpacking the inner arrays
+        let since = timetable.map(timepiece => getTimeFromTimedate(timepiece.od));
+        let upto = timetable.map(timepiece => getTimeFromTimedate(timepiece.do));
+        let correctstart = since.map(entry => entry >= time[0]);
+        let correctend = upto.map(entry => entry <= time[1]);
+        return correctstart.includes(true) && correctend.includes(true)
+    }
+    return subjects.filter(subject => isInCorrectTime(subject,time))
 };
 
 const ResultsPage = ({subjects}) => {
@@ -51,8 +60,7 @@ const ResultsPage = ({subjects}) => {
     // subjects = subjects.filter(subject => (subject.total_len >= totallength[0] && subject.total_len <= totallength[1]));
     subjects = subjects.filter(subject => 0 <= totallength.length);  // Avoiding warnings, delete this
 
-    //TODO: needs fixing
-    //subjects = timeFilter(subjects, time);
+    subjects = timeFilter(subjects, time);
 
     // TODO Temporary hack - only show first 20 results instead of all (500+)
     subjects = subjects.slice(0, 20);
