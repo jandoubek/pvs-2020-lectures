@@ -1,6 +1,6 @@
 import { combineReducers } from "redux";
-import subjectsJSON from "../data/predmety.json";
-import {TOGGLE_SUBJECT} from "./actions";
+import subjectsJSON from "../data/data.json";
+import { TOGGLE_SUBJECT } from "./actions";
 
 const subjects = (state = subjectsJSON, action) => {
     switch (action.type) {

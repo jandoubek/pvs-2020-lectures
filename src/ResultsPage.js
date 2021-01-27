@@ -37,12 +37,25 @@ const ResultsPage = ({subjects}) => {
     const days = parseDays(queryRoute.get("days"));
     const credits = parseCredits(queryRoute.get("credits"));
     const time = parseTime(queryRoute.get("time"));
-    const totallength = parseLength(queryRoute.get("totallength"))
+    const totallength = parseLength(queryRoute.get("totallength"));
+
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
-    subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
-    subjects = subjects.filter(subject => (subject.credits >= credits[0] && subject.credits <= credits[1]));
-    subjects = subjects.filter(subject => (subject.total_len >= totallength[0] && subject.total_len <= totallength[1]));
+
+    // TODO Needs manual fixing
+    // subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
+    subjects = subjects.filter(subject => 0 <= days.length);  // Avoiding warnings, delete this
+
+    subjects = subjects.filter(subject => (subject.kredity >= credits[0] && subject.kredity <= credits[1]));
+
+    // TODO Needs manual fixing
+    // subjects = subjects.filter(subject => (subject.total_len >= totallength[0] && subject.total_len <= totallength[1]));
+    subjects = subjects.filter(subject => 0 <= totallength.length);  // Avoiding warnings, delete this
+
+    //TODO: needs fixing
     subjects = timeFilter(subjects, time);
+
+    // TODO Temporary hack - only show first 20 results instead of all (500+)
+    subjects = subjects.slice(0, 20);
 
     return (
         <React.Fragment>
