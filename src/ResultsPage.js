@@ -40,6 +40,23 @@ const timeFilter = (subjects, time) => {
     return subjects.filter(subject => isInCorrectTime(subject,time))
 };
 
+const dayFilter = (subjects, days) => {
+    const getDayFromTimedate = (time) => {
+        let timeString = String(time);
+        return parseInt(timeString.charAt(0))-1;//edit so that monday is indexed from one
+    }
+
+    const isInCorrectDay = (subject, wanteddays) => {
+        let timetable = subject.rozvrhy;
+        timetable = timetable.map(entry => entry[0]);
+        let subjectdays = timetable.map(timepiece => getDayFromTimedate(timepiece.od));
+        let correctday = subjectdays.map(entry => wanteddays.includes(entry));
+        return correctday.includes(true);
+    }
+
+    return days.length > 0 ? subjects.filter(subject => isInCorrectDay(subject, days)) : subjects;
+}
+
 const ResultsPage = ({subjects}) => {
     let queryRoute = useQuery();
     const includes = queryRoute.get("includes");
@@ -50,9 +67,9 @@ const ResultsPage = ({subjects}) => {
 
     subjects = includes ? subjects.filter(subject => subjectMatches(subject, includes)) : subjects;
 
-    // TODO Needs manual fixing
-    // subjects = days.length > 0 ? subjects.filter(subject => days.includes(subject.day)) : subjects;
-    subjects = subjects.filter(subject => 0 <= days.length);  // Avoiding warnings, delete this
+
+    subjects = dayFilter(subjects, days);
+
 
     subjects = subjects.filter(subject => (subject.kredity >= credits[0] && subject.kredity <= credits[1]));
 
